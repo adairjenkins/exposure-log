@@ -9,7 +9,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
     const queryText = `SELECT * FROM "target"
                        WHERE "user_id" = $1`
-    values = [req.user.id];
+    const values = [req.user.id];
 
     pool.query(queryText, values)
         .then(result => {
@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         .catch(error => {
             console.log('error in target GET', error);
         })
-})
+});
 
 
 module.exports = router;

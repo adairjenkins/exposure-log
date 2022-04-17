@@ -5,11 +5,11 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware')
 
 //GET hierarchy route
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('hierarchy GET route')
+    console.log('hierarchy GET router');
 
     const queryText = `SELECT * FROM "hierarchy"
-                 WHERE "user_id" = $1` 
-    values = [req.user.id];
+                 WHERE "user_id" = $1`; 
+    const values = [req.user.id];
     
     pool.query(queryText, values)
         .then(result => {
