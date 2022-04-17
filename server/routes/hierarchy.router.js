@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware')
 
-//GET hierarchy route
+//GET hierarchy route -------- TO-DO need to include target_id data
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('hierarchy GET router');
 
