@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ExposureForm from '../ExposureForm/ExposureForm';
+import Hierarchy from '../Hierarchy/Hierarchy';
+import History from '../History/History';
 
 import './App.css';
 
@@ -29,7 +31,7 @@ function App() {
   const user = useSelector(store => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'GET_USER' });
   }, [dispatch]);
 
   return (
@@ -81,6 +83,14 @@ function App() {
 
           <Route exact path="/exposure-form">
             < ExposureForm/>
+          </Route>
+
+          <Route exact path="/hierarchy">
+            < Hierarchy/>
+          </Route>
+
+          <Route exact path="/history">
+            < History/>
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
