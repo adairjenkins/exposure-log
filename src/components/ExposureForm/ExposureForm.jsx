@@ -4,18 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
 
 function ExposureForm () {
-    const emptyForm = { situation: '',
+    const emptyForm = { hierarchy_id: '',
                         date: '',
                         time: '',
                         duration: '',
-                        preSuds: 0,
-                        postSuds: 0,
-                        peakSuds: 0,
+                        pre_suds: 0,
+                        post_suds: 0,
+                        peak_suds: 0,
                         notes: ''
                       }
     const dispatch = useDispatch();
     const [formValues, setFormValues] = useState(emptyForm); 
     const hierarchyList = useSelector(store  => store.hierarchy);
+    const [situationObj, setSituationObj] = useState('');
     console.log('hierarchyList from store', hierarchyList); 
     
     useEffect(() => {
@@ -24,6 +25,7 @@ function ExposureForm () {
 
     const submitForm = (event) => {
         event.preventDefault();
+
         console.log('submitForm func formValues:', formValues);
         dispatch({type: 'ADD_EXPOSURE', payload: formValues});
         setFormValues(emptyForm);
@@ -66,8 +68,8 @@ function ExposureForm () {
                     <FormControl>
                         <InputLabel>SITUATION</InputLabel>
                         <Select
-                            value={formValues.situation}
-                            onChange={(event) => setFormValues({...formValues, situation: event.target.value})}
+                            value={formValues.hierarchy_id}
+                            onChange={(event) => setFormValues({...formValues, hierarchy_id: event.target.value})}
                         >
                             {hierarchyList.map(situation => (
                             <MenuItem key={situation.id} value={situation.id}>{situation.description}</MenuItem>
@@ -85,8 +87,8 @@ function ExposureForm () {
                                     {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
                             min={0}
                             max={10}
-                            value={formValues.preSuds}
-                            onChange={(event) => setFormValues({...formValues, preSuds: event.target.value})}
+                            value={formValues.pre_suds}
+                            onChange={(event) => setFormValues({...formValues, pre_suds: event.target.value})}
                         />
                         
                         <FormLabel>peak SUDs</FormLabel>
@@ -97,8 +99,8 @@ function ExposureForm () {
                                     {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
                             min={0}
                             max={10}
-                            value={formValues.peakSuds}
-                            onChange={(event) => setFormValues({...formValues, peakSuds: event.target.value})}
+                            value={formValues.peak_suds}
+                            onChange={(event) => setFormValues({...formValues, peak_suds: event.target.value})}
                         />
 
                         <FormLabel>post SUDs</FormLabel>
@@ -109,8 +111,8 @@ function ExposureForm () {
                                     {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
                             min={0}
                             max={10}
-                            value={formValues.postSuds}
-                            onChange={(event) => setFormValues({...formValues, postSuds: event.target.value})}
+                            value={formValues.post_suds}
+                            onChange={(event) => setFormValues({...formValues, post_suds: event.target.value})}
                         />
                     </FormControl>
                 </Grid>
