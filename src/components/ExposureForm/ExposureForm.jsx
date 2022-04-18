@@ -3,13 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ExposureForm () {
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch({type: 'GET_HIERARCHY'})
-    }, []);
-    
-    const hierarchyList = useSelector(store  => store.hierarchy);
-    console.log('hierarchyList from store', hierarchyList);
-    
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [duration, setDuration] = useState('');
@@ -18,6 +11,13 @@ function ExposureForm () {
     const [postSuds, setPostSuds] = useState('');
     const [notes, setNotes] = useState('');
 
+    const hierarchyList = useSelector(store  => store.hierarchy);
+    console.log('hierarchyList from store', hierarchyList);
+
+    useEffect(() => {
+        dispatch({type: 'GET_HIERARCHY'})
+    }, []);  
+
     const submitForm = (event) => {
         event.preventDefault();
         console.log('submitForm func');
@@ -25,7 +25,11 @@ function ExposureForm () {
     
     return (
         <form onSubmit={submitForm}>
-            ExposureForm Component
+            <select name="situation">
+                {hierarchyList.map(situation => (
+                    <option key={situation.id} value={situation.id}>{situation.description}</option>
+                ))}
+            </select>
             <button type="submit">LOG</button>
         </form>
     )
