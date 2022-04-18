@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Grid, TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
+import { Grid, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
 
 function ExposureForm () {
     const emptyForm = { situation: '',
                         date: '',
                         time: '',
                         duration: '',
-                        preSuds: '',
-                        postSuds: '',
-                        peakSuds: '',
+                        preSuds: 0,
+                        postSuds: 0,
+                        peakSuds: 0,
                         notes: ''
                       }
     const dispatch = useDispatch();
@@ -24,13 +24,13 @@ function ExposureForm () {
 
     const submitForm = (event) => {
         event.preventDefault();
-        console.log('submitForm func');
+        console.log('submitForm func formValues:', formValues);
         dispatch({type: 'ADD_EXPOSURE', payload: formValues});
         setFormValues(emptyForm);
     }
     
     return (
-        <form>
+        <form onSubmit={submitForm}>
             <Grid container>
                 <Grid item>
                     <TextField
@@ -38,26 +38,35 @@ function ExposureForm () {
                         color="secondary"
                         type="date"
                         label="DATE"
+                        value={formValues.date}
+                        onChange={(event) => setFormValues({...formValues, date: event.target.value})}
                     />
                 </Grid>
                 <Grid item>    
-                    <FormControl>
-                        <FormLabel>TIME OF DAY</FormLabel>
-                        <RadioGroup 
-                            row={true}
+                    <TextField
+                            variant="outlined"
+                            color="secondary"
+                            type="time"
+                            label="time"
+                            value={formValues.time}
                             onChange={(event) => setFormValues({...formValues, time: event.target.value})}
-                        >
-                            <FormControlLabel value="1" control={<Radio/>} label="MORNING"/>
-                            <FormControlLabel value="2" control={<Radio/>} label="MIDDAY"/>
-                            <FormControlLabel value="3" control={<Radio/>} label="EVENING"/>
-                            <FormControlLabel value="4" control={<Radio/>} label="NIGHT"/>
-                        </RadioGroup>
-                    </FormControl>
+                        />
+                </Grid>
+                <Grid item>
+                <TextField
+                        variant="outlined"
+                        color="secondary"
+                        type="number"
+                        label="DURATION (min)"
+                        value={formValues.duration}
+                        onChange={(event) => setFormValues({...formValues, duration: event.target.value})}
+                    />
                 </Grid>
                 <Grid item>
                     <FormControl>
+                        <InputLabel>SITUATION</InputLabel>
                         <Select
-                            value={2}
+                            value={formValues.situation}
                             onChange={(event) => setFormValues({...formValues, situation: event.target.value})}
                         >
                             {hierarchyList.map(situation => (
@@ -66,22 +75,55 @@ function ExposureForm () {
                         </Select>
                     </FormControl>
                 </Grid>
-            {/* <form onSubmit={submitForm}>
-                <select name="situation">
-                    {hierarchyList.map(situation => (
-                        <option key={situation.id} value={situation.id}>{situation.description}</option>
-                    ))}
-                </select>
-                <button type="submit">LOG</button>
-            </form> */}
-                <TextField
-                    variant="outlined"
-                    color="primary"
-                    label="NOTES"
-                    name="notes"
-                    value={formValues.notes}
-                    onChange={(event) => setFormValues({...formValues, notes: event.target.value})}
-                />
+                <Grid item>
+                    <FormControl>
+                        <FormLabel>pre SUDs</FormLabel>
+                        <Slider 
+                            defaultValue={0}
+                            step={1}
+                            marks={[{value:0, label:0}, {value:1, label:1}, {value:2, label:2}, {value:3, label:3}, {value:4, label:4}, 
+                                    {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
+                            min={0}
+                            max={10}
+                            value={formValues.preSuds}
+                            onChange={(event) => setFormValues({...formValues, preSuds: event.target.value})}
+                        />
+                        
+                        <FormLabel>peak SUDs</FormLabel>
+                        <Slider 
+                            defaultValue={0}
+                            step={1}
+                            marks={[{value:0, label:0}, {value:1, label:1}, {value:2, label:2}, {value:3, label:3}, {value:4, label:4}, 
+                                    {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
+                            min={0}
+                            max={10}
+                            value={formValues.peakSuds}
+                            onChange={(event) => setFormValues({...formValues, peakSuds: event.target.value})}
+                        />
+
+                        <FormLabel>post SUDs</FormLabel>
+                        <Slider 
+                            defaultValue={0}
+                            step={1}
+                            marks={[{value:0, label:0}, {value:1, label:1}, {value:2, label:2}, {value:3, label:3}, {value:4, label:4}, 
+                                    {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
+                            min={0}
+                            max={10}
+                            value={formValues.postSuds}
+                            onChange={(event) => setFormValues({...formValues, postSuds: event.target.value})}
+                        />
+                    </FormControl>
+                </Grid>
+                <Grid item>
+                    <TextField
+                        variant="outlined"
+                        color="primary"
+                        label="NOTES"
+                        name="notes"
+                        value={formValues.notes}
+                        onChange={(event) => setFormValues({...formValues, notes: event.target.value})}
+                    />
+                </Grid>
                 <Button>CANCEL</Button>
                 <Button type="submit">LOG</Button>
             </Grid>
