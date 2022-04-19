@@ -16,14 +16,13 @@ function ExposureForm () {
     const dispatch = useDispatch();
     const [formValues, setFormValues] = useState(emptyForm); 
     const hierarchyList = useSelector(store  => store.hierarchy);
-    const [situationObj, setSituationObj] = useState('');
     console.log('hierarchyList from store', hierarchyList); 
     
     useEffect(() => {
         dispatch({type: 'GET_HIERARCHY'})
     }, []);  
 
-    const submitForm = (event) => {
+    const submitExposureForm = (event) => {
         event.preventDefault();
 
         console.log('submitForm func formValues:', formValues);
@@ -32,7 +31,7 @@ function ExposureForm () {
     }
     
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitExposureForm}>
             <Grid container>
                 <Grid item>
                     <TextField
