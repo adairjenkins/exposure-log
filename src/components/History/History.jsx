@@ -14,9 +14,9 @@ function History() {
     return (
         <>
         <h3>HISTORY</h3>
-        <Grid container>
+        <Grid container spacing={2}>
             {exposureList.map(exposure => (
-                <Grid item key={exposure.id}>
+                <Grid item key={exposure.id} xs={12}>
                     <Paper>
                         <Typography>
                             {exposure.description}
