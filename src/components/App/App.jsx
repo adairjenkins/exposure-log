@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ExposureForm from '../ExposureForm/ExposureForm';
 import Hierarchy from '../Hierarchy/Hierarchy';
 import History from '../History/History';
+import TargetForm from '../TargetForm/TargetForm';
 
 import './App.css';
 
@@ -83,6 +84,10 @@ function App() {
 
           <Route exact path="/exposure-form">
             < ExposureForm/>
+          </Route>
+
+          <Route exact path="/target-form">
+            < TargetForm/>
           </Route>
 
           <Route exact path="/hierarchy">

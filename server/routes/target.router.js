@@ -20,5 +20,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// POST target route
+router.post('/', rejectUnauthenticated, (req, res) => {
+    console.log('target POST route');
+    const queryText = `INSERT INTO "target" ("user_id", "description")
+                       VALUES ($1, $2);
+                       `;
+    const values = [req.user.id, req.body.description];
+    pool.query(queryText, values)
+        .then(result => {
+            res.sendStatus(201);
+        }).catch(error => {
+            console.log('target POST error:', error);
+        })
+});
+
 
 module.exports = router;

@@ -11,8 +11,19 @@ function* getTarget() {
     }
 }
 
+function* addTarget(action) {
+    console.log('saga addTarget action.payload:', action.payload)
+    try {
+        yield axios.post('/api/target', action.payload);
+        yield put({type: 'GET_TARGET'})
+    } catch (error) {
+        console.log('saga addTarget error:', error);
+    }
+}
+
 function* targetSaga() {
     yield takeLatest('GET_TARGET', getTarget);
+    yield takeLatest('ADD_TARGET', addTarget);
 }
 
 export default targetSaga;
