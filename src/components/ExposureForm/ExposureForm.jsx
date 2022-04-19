@@ -32,7 +32,7 @@ function ExposureForm () {
     
     return (
         <form onSubmit={submitExposureForm}>
-            <Grid container>
+            <Grid container spacing={1}>
                 <Grid item>
                     <TextField
                         variant="outlined"
@@ -76,16 +76,16 @@ function ExposureForm () {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item>
+                <Grid item xs={8}>
                     <FormControl>
                         <FormLabel>pre SUDs</FormLabel>
                         <Slider 
                             defaultValue={0}
-                            step={1}
-                            marks={[{value:0, label:0}, {value:1, label:1}, {value:2, label:2}, {value:3, label:3}, {value:4, label:4}, 
-                                    {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:9, label:9}, {value:10, label:10}]}
+                            step={10}
+                            marks={[{value:0, label:0}, {value:10, label:10}, {value:20, label:20}, {value:30, label:30}, {value:40, label:40}, 
+                                    {value:5, label:5}, {value:6, label:6}, {value:7, label:7}, {value:8, label:8}, {value:90, label:90}, {value:100, label:100}]}
                             min={0}
-                            max={10}
+                            max={100}
                             value={formValues.pre_suds}
                             onChange={(event) => setFormValues({...formValues, pre_suds: event.target.value})}
                         />

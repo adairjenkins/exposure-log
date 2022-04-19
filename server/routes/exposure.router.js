@@ -7,8 +7,12 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('exposure GET router');
 
-  const queryText = `SELECT * FROM "exposure"
-                     WHERE "user_id" = $1`;
+  // TODO: add WHERE clause for target_id passed from req.params once I figure out how I want to track target  
+  const queryText = `SELECT "exposure".id, "exposure".user_id, "hierarchy".rating, "hierarchy".description, "exposure".date, "exposure"."time", "exposure".duration, "exposure".pre_suds, "exposure".peak_suds, "exposure".post_suds, "exposure".notes  FROM "exposure"
+                     JOIN "hierarchy" ON "hierarchy".id = "exposure".hierarchy_id
+                     WHERE "exposure".user_id = $1
+                     ORDER BY "exposure".date, "exposure"."time";
+                     `; 
   const values = [req.user.id];
 
   pool.query(queryText, values) 

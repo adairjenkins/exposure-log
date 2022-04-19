@@ -19,7 +19,22 @@ function History() {
                 <Grid item key={exposure.id}>
                     <Paper>
                         <Typography>
-                            DATE: {exposure.date}
+                            {exposure.description}
+                        </Typography>
+                        <Typography>
+                            rating: {exposure.rating}
+                        </Typography>
+                        <Typography>
+                            date: {exposure.date}
+                        </Typography>
+                        <Typography>
+                            pre: {exposure.pre_suds}
+                        </Typography>
+                        <Typography>
+                            peak: {exposure.peak_suds}
+                        </Typography>
+                        <Typography>
+                            post: {exposure.post_suds}
                         </Typography>
                     </Paper>
                 </Grid>  
