@@ -19,6 +19,7 @@ function TargetForm() {
         dispatch({type: 'ADD_TARGET', payload: formValues});
         setFormValues(emptyForm);
     }
+    
     return (
         <form onSubmit={submitTargetForm}>
             <Grid container>
