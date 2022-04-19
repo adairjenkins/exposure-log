@@ -82,7 +82,7 @@ function App() {
             { user.id ? <Redirect to="/user"/> : <LandingPage/> }
           </Route>
 
-          <Route exact path="/exposure-form">
+          <Route exact path="/exposure-form/:id">
             < ExposureForm/>
           </Route>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { Grid, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
 
@@ -13,10 +14,15 @@ function ExposureForm () {
                         peak_suds: 0,
                         notes: ''
                       }
+
     const dispatch = useDispatch();
     const [formValues, setFormValues] = useState(emptyForm); 
     const hierarchyList = useSelector(store  => store.hierarchy);
     console.log('hierarchyList from store', hierarchyList); 
+
+    console.log('useParams.id:', useParams().id);
+    console.log((useParams().id ? useParams().id : ''))
+    useParams().id ? console.log('TRUE') : console.log('FALSE');
     
     useEffect(() => {
         dispatch({type: 'GET_HIERARCHY'})
@@ -58,6 +64,7 @@ function ExposureForm () {
                         <InputLabel>SITUATION</InputLabel>
                         <Select
                             value={formValues.hierarchy_id}
+                            defaultValue={formValues.hierarchy_id}
                             onChange={(event) => setFormValues({...formValues, hierarchy_id: event.target.value})}
                         >
                             {hierarchyList.map(situation => (
