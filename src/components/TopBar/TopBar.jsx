@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import { Person, Logout } from '@mui/icons-material';
 
-function Header() {
+function TopBar() {
     const dispatch = useDispatch();
     
     return (
@@ -17,4 +17,4 @@ function Header() {
     )
 }
 
-export default Header;
+export default TopBar;

@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import BottomBar from '../BottomBar/BottomBar';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -23,7 +23,7 @@ import ExposureForm from '../ExposureForm/ExposureForm';
 import Hierarchy from '../Hierarchy/Hierarchy';
 import History from '../History/History';
 import TargetForm from '../TargetForm/TargetForm';
-import Header from '../Header/Header';
+import TopBar from '../TopBar/TopBar';
 
 import './App.css';
 
@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <div>
-        < Header/>
+        < TopBar/>
         {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -110,7 +110,7 @@ function App() {
           </Route>
         
         </Switch>
-        <Footer />
+        <BottomBar />
       </div>
     </Router>
   );
