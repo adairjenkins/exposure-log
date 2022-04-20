@@ -46,4 +46,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
+  console.log('exposure delete router id:', req.params.id);
+
+  const queryText = `DELETE FROM "exposure"
+                     WHERE "id"  = $1 and "user_id" = $2;
+                     `;
+  const values = [req.params.id, req.user.id];
+  pool.query(queryText, values)
+      .then(result => {
+        res.sendStatus(200);
+      }).catch(error => {
+        console.log('error in exposure delete router:', error);
+      })
+})
+
 module.exports = router;

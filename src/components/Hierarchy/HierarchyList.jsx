@@ -24,12 +24,14 @@ function HierarchyList() {
     // TODO: complete put request
     const editSituation = (situation) => {
         console.log('editSituation', situation);
+        //TODO:
+        // dispatch({type: 'EDIT_HIERARCHY', payload})
     }
 
     // TODO: complete delete request
     const deleteSituation = (id) => {
         console.log('deleteSituation id:', id);
-        dispatch({type: 'DELETE_SITUATION', payload: id});
+        dispatch({type: 'DELETE_HIERARCHY', payload: id});
     }
 
     return (

@@ -21,9 +21,20 @@ function* addExposure(action) {
     }
 }
 
+function* deleteExposure(action) {
+    console.log('saga deleteExposure action.payload:', action.payload);
+    try {
+        yield axios.delete(`api/exposure/${action.payload}`)
+        yield put({type: 'GET_EXPOSURE'})
+    } catch (error) {
+        console.log('saga deleteExposure error:', error);
+    }
+}
+
 function* exposureSaga() {
     yield takeLatest('GET_EXPOSURE', getExposure);
     yield takeLatest('ADD_EXPOSURE', addExposure);
+    yield takeLatest('DELETE_EXPOSURE', deleteExposure);
 }
 
 export default exposureSaga;

@@ -37,4 +37,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })                   
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('hierarchy router delete id:', req.params.id);
+    
+    const queryText = `DELETE FROM "hierarchy"
+                       WHERE "id" = $1 AND "user_id" = $2;
+                       `;
+    const values = [req.params.id, req.user.id];
+    pool.query(queryText, values)
+        .then(result => {
+            res.sendStatus(200);
+        }).catch(error => {
+            console.log('error in hierarchy delete router:', error);
+        })
+})
+
 module.exports = router;

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Paper, Typography } from '@mui/material';
+import { Add, DeleteOutlined, EditOutlined} from '@mui/icons-material';
 
 function History() {
     const dispatch = useDispatch();
@@ -10,7 +11,16 @@ function History() {
 
     const exposureList = useSelector(store => store.exposure);
     console.log('exposureList from store:', exposureList);
+
+    const editExposure = (exposure) => {
+        console.log('editExposure:', exposure)
+    }
     
+    const deleteExposure = (id) => {
+        console.log('deleteExposure id:', id);
+        dispatch({type: 'DELETE_EXPOSURE', payload: id});
+    }
+
     return (
         <>
         <h3>HISTORY</h3>
@@ -36,6 +46,8 @@ function History() {
                         <Typography>
                             post: {exposure.post_suds}
                         </Typography>
+                        <DeleteOutlined onClick={() => deleteExposure(exposure.id)}/>
+                        <EditOutlined onClick={() => editExposure(exposure)}/>
                     </Paper>
                 </Grid>  
             ))}
