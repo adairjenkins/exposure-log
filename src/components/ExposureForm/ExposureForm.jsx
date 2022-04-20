@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Grid, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
 
 function ExposureForm () {
-    const emptyForm = { hierarchy_id: '',
+    const emptyForm = { hierarchy_id: (useParams().id ? useParams().id : ''),
                         date: '',
                         time: '',
                         duration: '',

@@ -85,6 +85,9 @@ function App() {
           <Route exact path="/exposure-form/:id">
             < ExposureForm/>
           </Route>
+          <Route exact path="/exposure-form">
+            < ExposureForm/>
+          </Route> 
 
           <Route exact path="/target-form">
             < TargetForm/>
