@@ -82,24 +82,25 @@ function App() {
             { user.id ? <Redirect to="/user"/> : <LandingPage/> }
           </Route>
 
-          <Route exact path="/exposure-form/:id">
+          <ProtectedRoute exact path="/exposure-form/:id">
             < ExposureForm/>
-          </Route>
-          <Route exact path="/exposure-form">
+          </ProtectedRoute>
+          
+          <ProtectedRoute exact path="/exposure-form">
             < ExposureForm/>
-          </Route> 
+          </ProtectedRoute> 
 
-          <Route exact path="/target-form">
+          <ProtectedRoute exact path="/target-form">
             < TargetForm/>
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/hierarchy">
+          <ProtectedRoute exact path="/hierarchy">
             < Hierarchy/>
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/history">
+          <ProtectedRoute exact path="/history">
             < History/>
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

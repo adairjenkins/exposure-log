@@ -24,6 +24,7 @@ function* addHierarchy(action) {
 function* hierarchySaga() {
     yield takeLatest('GET_HIERARCHY', getHierarchy);
     yield takeLatest('ADD_HIERARCHY', addHierarchy);
+    yield takeLatest('DELETE_HIERARCHY', deleteHierarchy);
 }
 
   export default hierarchySaga;
