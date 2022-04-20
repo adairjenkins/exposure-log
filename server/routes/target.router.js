@@ -35,5 +35,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
-
+router.put('/:id', rejectUnauthenticated, (req, res) =>{
+    console.log('target router PUT req.params.id:', req.params.id)
+    console.log('target router PUT req.body:', req.body)
+    const queryText = `UPDATE "target"
+                       SET "description" = $1
+                       WHERE "id" = $2 AND "user_id" = $3;`
+    const values = [req.body]
+})
 module.exports = router;
