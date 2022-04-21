@@ -1,43 +1,43 @@
 import { useDispatch } from 'react-redux';
-import { Paper,  Toolbar, AppBar, Box, Typography, Button, IconButton } from '@mui/material';
-import { Person, Logout, Menu } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
+import { Paper, Menu, MenuItem, Toolbar, AppBar, Box, Typography, Button, IconButton } from '@mui/material';
+import { Person, Logout, MoreVert } from '@mui/icons-material';
 
 function TopBar() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleClick = () => {
+        console.log('menu clicked!');
+    }
     
     return (
         <Box sx={{ flexGRow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
+            onClick={handleClick}
+            edge="start"
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
                     >
-                        <Menu />
+                        <MoreVert />
                     </IconButton>
                     <Typography>Title Here</Typography>  
                     <IconButton
                         size="large"
-                        edge="start"
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        label="user"
+                        onClick={() => { history.push('/user') }}
                     >
-                        <Person />
+                        <Person label="user" />
                     </IconButton>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={() => dispatch({ type: 'LOGOUT' })}
-                    >
-                        <Logout />
-                    </IconButton>
+                    <Button color="inherit" onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</Button>
                 </Toolbar>   
             </AppBar>
         </Box>
