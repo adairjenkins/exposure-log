@@ -100,6 +100,10 @@ function App() {
             < Hierarchy/>
           </ProtectedRoute>
 
+          {/* <ProtectedRoute exact path="edit/hierarchy/:id">
+            < EditHierarchy/>
+          </ProtectedRoute> */}
+
           <ProtectedRoute exact path="/history">
             < History/>
           </ProtectedRoute>

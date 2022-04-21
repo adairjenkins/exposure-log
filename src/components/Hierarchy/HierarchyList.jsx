@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Grid, Paper, Typography, Box } from '@mui/material';
+import { Stack, Grid, Paper, Typography, Box } from '@mui/material';
 import { Add, DeleteOutlined, EditOutlined} from '@mui/icons-material';
 
 function HierarchyList() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const [isEditing, setEditing] = useState(false);
+    
     useEffect(() => {
         dispatch({type: 'GET_HIERARCHY'})
     }, []);
@@ -24,23 +26,28 @@ function HierarchyList() {
     // TODO: complete put request
     const editSituation = (situation) => {
         console.log('editSituation', situation);
-        //TODO:
-        // dispatch({type: 'EDIT_HIERARCHY', payload})
+        dispatch({type: 'SET_EDIT', payload: situation})
+        history.push(`/edit/hierarchy/${situation.id}`);
     }
 
-    // TODO: complete delete request
+    // FIXME: fix delete request - doesn't work if there's any associated exposures
     const deleteSituation = (id) => {
         console.log('deleteSituation id:', id);
         dispatch({type: 'DELETE_HIERARCHY', payload: id});
     }
 
     return (
-        <Grid container spacing={1}>
+        <Stack spacing={2} sx={{width:"70%", marginBottom:"70px"}}>
             {hierarchyList.map(situation => (
-                <Grid item xs={12} key={situation.id}>
-                    <Paper>
-                        <Box onClick={() => logNewExposure(situation)}>
-                            <Typography>
+                    <Paper key={situation.id} sx={{
+                        '&:hover': {
+                          backgroundColor: "#ededed",
+                        }, 
+                      }}>
+                        <Box onClick={() => logNewExposure(situation)}
+                                                                
+                        >
+                            <Typography >
                                 {situation.description}
                             </Typography>
                             <Typography>
@@ -50,9 +57,8 @@ function HierarchyList() {
                         <DeleteOutlined onClick={() => deleteSituation(situation.id)}/>
                         <EditOutlined onClick={() => editSituation(situation)}/>
                     </Paper>
-                </Grid>
             ))}
-        </Grid>
+        </Stack>
 
     )
 }
