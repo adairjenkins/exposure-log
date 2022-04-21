@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Stack, Paper, Typography } from '@mui/material';
 import { Add, DeleteOutlined, EditOutlined} from '@mui/icons-material';
 
 function History() {
@@ -24,9 +24,8 @@ function History() {
     return (
         <>
         <h3>HISTORY</h3>
-        <Grid container spacing={2}>
+        <Stack spacing={2}>
             {exposureList.map(exposure => (
-                <Grid item key={exposure.id} xs={12}>
                     <Paper>
                         <Typography>
                             {exposure.description}
@@ -49,9 +48,8 @@ function History() {
                         <DeleteOutlined onClick={() => deleteExposure(exposure.id)}/>
                         <EditOutlined onClick={() => editExposure(exposure)}/>
                     </Paper>
-                </Grid>  
             ))}
-        </Grid>
+        </Stack>
         </>
     )
 }
