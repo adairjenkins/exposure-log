@@ -9,7 +9,6 @@ import EditSituation from './EditSituation';
 function HierarchyList() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [isEditing, setEditing] = useState(false);
     const hierarchyList = useSelector(store => store.hierarchy);
     console.log('hierarchyList from store:', hierarchyList);
 
