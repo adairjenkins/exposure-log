@@ -31,9 +31,10 @@ function HierarchyForm() {
                         label="Situation"
                         variant="outlined"
                         value={formValues.description}
+                        sx={{minWidth: 160}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
-                    <FormControl required>
+                    <FormControl required sx={{minWidth: 90}}>
                         <InputLabel>RATING</InputLabel>
                         <Select
                             value={formValues.rating}
