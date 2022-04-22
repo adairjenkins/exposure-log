@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, TextField, FormControl, FormLabel, InputLabel, FormControlLabel, Select, MenuItem, Button } from '@mui/material';
 
+
 function HierarchyForm() {
     // FIXME: target_id will come from url params
     const emptyForm = { target_id: '',
@@ -21,6 +22,7 @@ function HierarchyForm() {
         console.log('submitTargetForm formValues:', formValues);
         dispatch({type: 'ADD_HIERARCHY', payload: formValues});
         setFormValues(emptyForm);
+
     }
     
     return (
