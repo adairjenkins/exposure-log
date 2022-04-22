@@ -29,13 +29,23 @@ function* deleteHierarchy(action) {
     } catch (error) {
         console.log('saga deleteHierarchy error:', error);
     }
+}
 
+function* editHierarchy(action) {
+    console.log('saga editHierarchy action.payload:', action.payload);
+    try {
+        yield axios.put(`/api/hierarchy`, action.payload);
+        yield put({type: 'GET_HIERARCHY'});
+    } catch (error) {
+        console.log('saga editHierarchy error:', error);
+    }
 }
 
 function* hierarchySaga() {
     yield takeLatest('GET_HIERARCHY', getHierarchy);
     yield takeLatest('ADD_HIERARCHY', addHierarchy);
     yield takeLatest('DELETE_HIERARCHY', deleteHierarchy);
+    yield takeLatest('EDIT_HIERARCHY', editHierarchy);
 }
 
   export default hierarchySaga;

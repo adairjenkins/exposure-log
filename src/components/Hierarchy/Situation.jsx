@@ -16,10 +16,17 @@ function Situation({situation}) {
         history.push(`/exposure-form/${situation.id}`);
     }
 
-    const editSituation = (situation) => {
-
-
+    const commitEdit = (event) => {
+        event.preventDefault();
+        console.log('editValues:', editValues)
+        dispatch({type: 'EDIT_HIERARCHY', payload: editValues})
+        setEditing(false);
     }
+
+    // const handleChange = () => {
+    //     console.log('handleChange')
+    // }
+
 
     // FIXME: fix delete request - doesn't work if there's any associated exposures (potentially change those hierarchy_id values to NULL/0)
     const deleteSituation = (id) => {
@@ -52,7 +59,7 @@ function Situation({situation}) {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                <IconButton>
+                <IconButton onClick={commitEdit}>
                     <Check/>
                 </IconButton>
                 <IconButton onClick={() => setEditing(false)}>
