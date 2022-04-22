@@ -40,9 +40,9 @@ function HierarchyList() {
                         < Situation
                             situation={situation}
                         />
-                        < EditSituation
+                        {/* < EditSituation
                             situation={situation} 
-                        />
+                        /> */}
                     </Paper>
             ))}
         </Stack>

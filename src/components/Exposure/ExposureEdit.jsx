@@ -1,44 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import ExposureForm from './ExposureForm';
+import { useSelector } from 'react-redux';
+import { Button } from '@mui/material';
 
-import { Grid, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
-
-function ExposureForm () {
-    const emptyForm = { hierarchy_id: (useParams().id ? useParams().id : ''),
-                        date: '',
-                        time: '',
-                        duration: '',
-                        pre_suds: 0,
-                        post_suds: 0,
-                        peak_suds: 0,
-                        notes: ''
-                      }
-
-    const dispatch = useDispatch();
-    const [formValues, setFormValues] = useState(emptyForm); 
-    const hierarchyList = useSelector(store  => store.hierarchy);
-    console.log('hierarchyList from store', hierarchyList); 
-
-    console.log('useParams.id:', useParams().id);
-    console.log((useParams().id ? useParams().id : ''))
-    useParams().id ? console.log('TRUE') : console.log('FALSE');
+function ExposureEdit({exposure}) {
     
-    useEffect(() => {
-        dispatch({type: 'GET_HIERARCHY'})
-    }, []);  
-
-    const submitExposureForm = (event) => {
-        event.preventDefault();
-
-        console.log('submitForm func formValues:', formValues);
-        dispatch({type: 'ADD_EXPOSURE', payload: formValues});
-        setFormValues(emptyForm);
+    
+    
+    const confirmEdit = () => {
+        console.log('confirmEdit:',)
     }
     
-    return (
-        <form onSubmit={submitExposureForm}>
-            <Grid container spacing={1}>
+    return(
+        <>
+        {/* <form onSubmit={confirmEdit} >
+            <Grid container spacing={1} align="center">
                 <Grid item xs={6}>
                     <TextField
                         variant="outlined"
@@ -60,7 +35,7 @@ function ExposureForm () {
                         />
                 </Grid>
                 <Grid item xs={9}>
-                    <FormControl>
+                    <FormControl sx={{minWidth: 130}}>
                         <InputLabel>SITUATION</InputLabel>
                         <Select
                             value={formValues.hierarchy_id}
@@ -83,8 +58,9 @@ function ExposureForm () {
                         onChange={(event) => setFormValues({...formValues, duration: event.target.value})}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <FormControl>
+            </Grid>
+                <Stack sx={{width:"80%", minWidth:300}}>
+                    <FormControl >
                         <FormLabel>pre SUDs</FormLabel>
                         <Slider 
                             defaultValue={0}
@@ -121,8 +97,7 @@ function ExposureForm () {
                             onChange={(event) => setFormValues({...formValues, post_suds: event.target.value})}
                         />
                     </FormControl>
-                </Grid>
-                <Grid item xs={12}>
+                </Stack>
                     <TextField
                         variant="outlined"
                         color="primary"
@@ -130,13 +105,12 @@ function ExposureForm () {
                         name="notes"
                         value={formValues.notes}
                         onChange={(event) => setFormValues({...formValues, notes: event.target.value})}
-                    />
-                </Grid>
+                    /> */}
                 <Button>CANCEL</Button>
                 <Button type="submit">LOG</Button>
-            </Grid>
-        </form>
+        {/* </form> */}
+        </>
     )
 }
 
-export default ExposureForm;
+export default ExposureEdit;

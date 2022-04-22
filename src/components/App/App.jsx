@@ -19,12 +19,13 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import ExposureForm from '../ExposureForm/ExposureForm';
+import NewExposure from '../Exposure/NewExposure';
 import Hierarchy from '../Hierarchy/Hierarchy';
 import History from '../History/History';
 import TargetForm from '../TargetForm/TargetForm';
 import TopBar from '../TopBar/TopBar';
-
+import ExposureEdit from '../Exposure/ExposureEdit';
+import ExposureForm from '../Exposure/ExposureForm';
 import './App.css';
 
 function App() {
@@ -85,11 +86,21 @@ function App() {
           </Route>
 
           <ProtectedRoute exact path="/exposure-form/:id">
-            < ExposureForm/>
+            < ExposureForm
+              isEdit={false}
+            />
           </ProtectedRoute>
           
           <ProtectedRoute exact path="/exposure-form">
-            < ExposureForm/>
+            < ExposureForm
+              isEdit={false}
+            />
+          </ProtectedRoute> 
+
+          <ProtectedRoute exact path="/exposure-edit/:id">
+            < ExposureForm
+              isEdit={true}
+            />
           </ProtectedRoute> 
 
           <ProtectedRoute exact path="/target-form">

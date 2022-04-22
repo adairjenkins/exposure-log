@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Stack, Grid, Paper, IconButton, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
-import { Add, Check, Close, DeleteOutlined, Edit, Delete, EditOutlined} from '@mui/icons-material';
+import { Check, Close, Edit, Delete } from '@mui/icons-material';
 
 function Situation({situation}) {
     const history = useHistory();
