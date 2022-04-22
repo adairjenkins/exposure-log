@@ -52,4 +52,20 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+router.put('/', rejectUnauthenticated, (req, res) => {
+    console.log('hierarchy router put req.body:', req.body);
+
+    const queryText = `UPDATE "hierarchy"
+                       SET "description" = $1, "rating" = $2
+                       WHERE "id" = $3 AND "user_id" = $4;
+                       `;
+    const values = [req.body.description, req.body.rating, req.body.id, req.user.id];
+    pool.query(queryText, values)
+        .then(result => {
+            res.sendStatus(200)
+        }).catch(error => {
+            console.log('error in hierarchy put router', error);
+        })
+})
+
 module.exports = router;

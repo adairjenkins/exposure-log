@@ -26,16 +26,15 @@ function HierarchyForm() {
     return (
         <form onSubmit={submitHierarchyForm}>
             <Grid container>
-                <Grid item>
                     <TextField
+                        required
                         label="Situation"
                         variant="outlined"
                         value={formValues.description}
+                        sx={{minWidth: 160}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
-                </Grid>
-                <Grid item>
-                    <FormControl>
+                    <FormControl required sx={{minWidth: 110}}>
                         <InputLabel>RATING</InputLabel>
                         <Select
                             value={formValues.rating}
@@ -53,9 +52,8 @@ function HierarchyForm() {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                </Grid>
                 <Button type="submit">
-                    ADD
+                    ADD TO HIERARCHY
                 </Button>
             </Grid>
         </form>
