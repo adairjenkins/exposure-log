@@ -49,16 +49,25 @@ function ExposureForm({ isEdit }) {
 
     const [formValues, setFormValues] = useState(form);
 
-    const submitExposureForm = (event) => {
+    const submitNewForm = (event) => {
         event.preventDefault();
 
-        console.log('submitForm func formValues:', formValues);
+        console.log('submitNewForm func formValues:', formValues);
         dispatch({ type: 'ADD_EXPOSURE', payload: formValues });
-        setFormValues(emptyForm);
+        history.push('/user');
+        // setFormValues(emptyForm);
+    }
+
+    const submitEdit = (event) => {
+        event.preventDefault();
+        console.log('submitEdit form:', formValues);
+        dispatch({ type: 'EDIT_EXPOSURE', payload: formValues});
+        history.push('/user');
+        // setFormValues()
     }
 
     return (
-        <form onSubmit={submitExposureForm} >
+        <form onSubmit={isEdit ? submitEdit : submitNewForm} >
             <Grid container spacing={1} align="center">
                 <Grid item xs={6}>
                     <TextField
@@ -159,12 +168,12 @@ function ExposureForm({ isEdit }) {
             {isEdit ?
                 <>
                     <Button type="submit">SAVE CHANGES</Button>
-                    <Button onClick={() => { history.push('/user') }}>CANCEL</Button>
+                    <Button onClick={() => { history.push('/history') }}>CANCEL</Button>
                 </>
                 :
                 <>
                     <Button type="submit">SAVE</Button>
-                    <Button onClick={() => { history.push('/user') }}>CANCEL</Button>
+                    <Button onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
                 </>
             }
         </form>

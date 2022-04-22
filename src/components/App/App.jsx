@@ -19,12 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import NewExposure from '../Exposure/NewExposure';
 import Hierarchy from '../Hierarchy/Hierarchy';
 import History from '../History/History';
 import TargetForm from '../TargetForm/TargetForm';
 import TopBar from '../TopBar/TopBar';
-import ExposureEdit from '../Exposure/ExposureEdit';
 import ExposureForm from '../Exposure/ExposureForm';
 import './App.css';
 

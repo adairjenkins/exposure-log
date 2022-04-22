@@ -61,4 +61,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) =>{
       })
 })
 
+router.put('/', rejectUnauthenticated, (req,res) =>{
+  console.log('exposure router put req.body:', req.body);
+  const exp = req.body;
+
+  const queryText = `UPDATE "exposure"
+                     SET "date" = $1, "time" = $2, "duration" = $3, "pre_suds" = $4, "peak_suds" = $5, 
+                         "post_suds" = $6, "notes" = $7, "hierarchy_id" = $8
+                     WHERE "id" = $9 AND "user_id" = $10;
+                    `;
+  const values = [exp.date, exp.time, exp.duration, exp.pre_suds, exp.peak_suds, exp.post, exp.notes, exp.hierarchy_id, exp.id, req.user.id ];
+  pool.query(queryText, values)
+    .then(result => {
+      res.sendStatus(200);
+    }).catch(error => {
+      console.log('put exposure router error:', error);
+    })
+})
+
 module.exports = router;
