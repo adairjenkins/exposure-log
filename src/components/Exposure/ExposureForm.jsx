@@ -27,10 +27,10 @@ function ExposureForm({ isEdit }) {
         const editExposure = exposureList.find(exposure => {
             return exposure.id == exposureId;
         })
-        console.log('useParams().id:', useParams().id)
-        console.log('exposureList:', exposureList);
-        console.log('editExposure', editExposure);
-
+        //convert date to correct format
+        editExposure.date = editExposure.date.slice(0, 10);
+        console.log(editExposure.date);
+        // set form default to exposure chosen for edit
         form = editExposure; 
     } else {
         // unpopulated form to log new exposure
@@ -109,8 +109,9 @@ function ExposureForm({ isEdit }) {
                 <FormControl >
                     <FormLabel>pre SUDs</FormLabel>
                     <Slider
+                        valueLabelDisplay="auto"
                         defaultValue={0}
-                        step={10}
+                        step={5}
                         marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
                         { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
                         min={0}
@@ -121,8 +122,9 @@ function ExposureForm({ isEdit }) {
 
                     <FormLabel>peak SUDs</FormLabel>
                     <Slider
+                        valueLabelDisplay="auto"
                         defaultValue={0}
-                        step={10}
+                        step={5}
                         marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
                         { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
                         min={0}
@@ -133,8 +135,9 @@ function ExposureForm({ isEdit }) {
 
                     <FormLabel>post SUDs</FormLabel>
                     <Slider
+                        valueLabelDisplay="auto"
                         defaultValue={0}
-                        step={10}
+                        step={5}
                         marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
                         { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
                         min={0}
