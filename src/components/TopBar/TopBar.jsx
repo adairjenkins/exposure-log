@@ -1,14 +1,24 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Paper, Menu, MenuItem, Toolbar, AppBar, Box, Typography, Button, IconButton } from '@mui/material';
+import { Paper, ListItemText, Menu, ListItemIcon, MenuItem, Toolbar, AppBar, Box, Typography, Button, IconButton } from '@mui/material';
 import { Person, Logout, MoreVert } from '@mui/icons-material';
 
 function TopBar() {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const dispatch = useDispatch();
     const history = useHistory();
 
     let headingTitle = '';
-    switch(useParams().url) {
+    switch (useParams().url) {
         case 'hierarchy':
             headingTitle = 'Hierarchy';
             break
@@ -18,40 +28,50 @@ function TopBar() {
         case 'history':
             headingTitle = 'History';
             break
-        
+
     }
 
-    const handleClick = () => {
-        console.log('menu clicked!');
-    }
+    // const handleClick = () => {
+    //     console.log('menu clicked!');
+    // }
 
     return (
         <Box sx={{ flexGRow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
-                        onClick={handleClick}
-                        edge="start"
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
                     >
                         <MoreVert />
                     </IconButton>
-                    <Typography variant="h5">{headingTitle}</Typography>
-                    <IconButton
-                        size="large"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        label="user"
-                        onClick={() => { history.push('/user') }}
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
                     >
-                        <Person label="user" />
-                    </IconButton>
-                    <Button color="inherit" onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</Button>
+                        <MenuItem onClick={() => { history.push('/user') }}>
+                            <ListItemIcon>
+                                <Person />
+                            </ListItemIcon>
+                            <ListItemText>USER</ListItemText>
+                        </MenuItem>
+                        <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>
+                            <ListItemIcon>
+                                <Logout />
+                            </ListItemIcon>
+                            <ListItemText>LOGOUT</ListItemText>
+                        </MenuItem>
+                    </Menu>
+
+                    <Typography variant="h5">{headingTitle}</Typography>
                 </Toolbar>
             </AppBar>
         </Box>
