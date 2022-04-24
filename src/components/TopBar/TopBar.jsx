@@ -1,21 +1,24 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Paper, ListItemText, Menu, ListItemIcon, MenuItem, Toolbar, AppBar, Box, Typography, Button, IconButton } from '@mui/material';
 import { Person, Logout, MoreVert } from '@mui/icons-material';
 
 function TopBar() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const user = useSelector(store => store.user);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    console.log('user:', user);
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const dispatch = useDispatch();
-    const history = useHistory();
 
     let headingTitle = '';
     switch (useParams().url) {
@@ -28,7 +31,8 @@ function TopBar() {
         case 'history':
             headingTitle = 'History';
             break
-
+        case 'user':
+            headingTitle = `Welcome, ${user.username}`
     }
 
     // const handleClick = () => {
