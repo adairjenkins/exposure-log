@@ -22,11 +22,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST target route
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('target POST route');
-    const queryText = `INSERT INTO "target" ("user_id", "description")
+    console.log('target POST route req.body:', req.body.fear);
+    const queryText = `INSERT INTO "target" ("user_id", "fear")
                        VALUES ($1, $2);
                        `;
-    const values = [req.user.id, req.body.description];
+    const values = [req.user.id, req.body.fear];
     pool.query(queryText, values)
         .then(result => {
             res.sendStatus(201);
@@ -39,7 +39,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) =>{
     console.log('target router PUT req.params.id:', req.params.id)
     console.log('target router PUT req.body:', req.body)
     const queryText = `UPDATE "target"
-                       SET "description" = $1
+                       SET "fear" = $1
                        WHERE "id" = $2 AND "user_id" = $3;`
     const values = [req.body]
 })

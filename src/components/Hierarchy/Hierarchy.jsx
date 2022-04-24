@@ -10,7 +10,6 @@ function Hierarchy () {
     
     return (
         <>
-            <h3>{target} Hierarchy</h3>
             <HierarchyForm/>
             <HierarchyList/>
         </>

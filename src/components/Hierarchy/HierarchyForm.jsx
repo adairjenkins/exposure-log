@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, TextField, FormControl, FormLabel, InputLabel, FormControlLabel, Select, MenuItem, Button } from '@mui/material';
-
+import { Grid, TextField, FormControl, IconButton, FormLabel, InputLabel, FormControlLabel, Select, MenuItem, Button } from '@mui/material';
+import { Add } from '@mui/icons-material';
 
 function HierarchyForm() {
     // FIXME: target_id will come from url params
@@ -30,10 +30,10 @@ function HierarchyForm() {
             <Grid container>
                     <TextField
                         required
-                        label="Situation"
+                        label="ADD NEW SITUATION TO HIERARCHY"
                         variant="outlined"
                         value={formValues.description}
-                        sx={{minWidth: 160}}
+                        sx={{minWidth: 320}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
                     <FormControl required sx={{minWidth: 110}}>
@@ -54,9 +54,9 @@ function HierarchyForm() {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                <Button type="submit">
-                    ADD TO HIERARCHY
-                </Button>
+                <IconButton type="submit">
+                    <Add/>
+                </IconButton>
             </Grid>
         </form>
     )
