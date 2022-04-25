@@ -11,7 +11,7 @@ router.get('/weekly-count', rejectUnauthenticated, (req, res) => {
   values = [req.user.id];
   pool.query(queryText, values)
     .then(result => {
-      res.send(result.rows);
+      res.send(result.rows[0].count);
     }).catch(error => {
       console.log('error in exposure weekly-count GET', error)
     })
@@ -20,13 +20,13 @@ router.get('/weekly-count', rejectUnauthenticated, (req, res) => {
 router.get('/daily-count', rejectUnauthenticated, (req, res) => {
   console.log('exposure router GET dailyCount');
   
-  const queryText = `SELECT * FROM "exposure"
-                     WHERE "date" BETWEEN (NOW() - interval '1 day') AND NOW() AND "id" = $2;
+  const queryText = `SELECT COUNT(*) FROM "exposure"
+                     WHERE "date" BETWEEN (NOW() - interval '1 day') AND NOW() AND "id" = $1;
                     `;
   values = [req.user.id];
   pool.query(queryText, values)
     .then(result => {
-      res.send(result.rows);
+      res.send(result.rows[0].count);
     }).catch(error => {
       console.log('error in exposure weekly-count GET', error)
     })

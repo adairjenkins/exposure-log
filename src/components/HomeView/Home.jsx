@@ -5,12 +5,15 @@ import { Typography, Card } from '@mui/material';
 function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch({ type: 'GET_GOAL' })
+        dispatch({ type: 'GET_GOAL' });
+        dispatch({ type: 'GET_COUNT' });
+        //dispatch({ type: 'GET_DAILY_COUNT' });
     }, []);
 
-    const goals = useSelector(store => store.goal);
-    console.log('goals:', goals);
-    // const weeklyCount = useSelector(store => store.) 
+    const goal = useSelector(store => store.goal);
+    console.log('goal:', goal);
+    const count = useSelector(store => store.count);
+    console.log('count:', count);
 
     return(
         <>

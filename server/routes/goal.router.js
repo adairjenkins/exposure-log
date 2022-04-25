@@ -22,7 +22,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('goal GET route');
 
-    const queryText = `SELECT "weekly_goal", "daily_goal" FROM "user"
+    const queryText = `SELECT "weekly_goal" AS "weekly", "daily_goal" AS "daily" FROM "user"
                        WHERE "id" = $1;
                        `;
     const values = [req.user.id];

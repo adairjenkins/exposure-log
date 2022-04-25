@@ -21,9 +21,22 @@ function* editGoal(action) {
     }
 }
 
+function* getCount() {
+    console.log('saga getCount');
+    try {
+        const weeklyData = yield axios.get('/api/exposure/weekly-count');
+        const dailyData = yield axios.get('/api/exposure/daily-count');
+        const count = { weekly: weeklyData.data, daily: dailyData.data }
+        yield put ({type: 'SET_COUNT', payload: count})
+    } catch (error) {
+        console.log('saga getCount error', error);
+    }
+}
+
 function* goalSaga() {
     yield takeLatest('GET_GOAL', getGoal);
     yield takeLatest('EDIT_GOAL', editGoal);
+    yield takeLatest('GET_COUNT', getCount);
 }
 
 export default goalSaga;

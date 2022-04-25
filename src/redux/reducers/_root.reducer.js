@@ -6,6 +6,7 @@ import target from './target.reducer';
 import exposure from './exposure.reducer';
 import edit from './edit.reducer';
 import goal from './goal.reducer';
+import count from './count.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   target,
   exposure,
   edit,
-  goal
+  goal,
+  count
 });
 
 export default rootReducer;
