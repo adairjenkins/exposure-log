@@ -166,6 +166,7 @@ function ExposureForm({ isEdit }) {
                     value={formValues.notes}
                     onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
                 />
+                <br/>
                 {isEdit ?
                     <>
                         <Button type="submit">SAVE CHANGES</Button>

@@ -23,11 +23,6 @@ function Situation({situation}) {
         setEditing(false);
     }
 
-    // const handleChange = () => {
-    //     console.log('handleChange')
-    // }
-
-
     // FIXME: fix delete request - doesn't work if there's any associated exposures (potentially change those hierarchy_id values to NULL/0)
     const deleteSituation = (id) => {
         console.log('deleteSituation id:', id);

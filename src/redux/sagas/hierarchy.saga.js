@@ -15,7 +15,7 @@ function* addHierarchy(action) {
     console.log('saga addHierarchy action.payload:', action.payload);
     try {
         yield axios.post('/api/hierarchy', action.payload);
-        yield put({type: 'GET_HIERARCHY'})
+        yield put({type: 'GET_HIERARCHY'});
     } catch (error) {
         console.log('saga addHierarchy error:', error);
     }

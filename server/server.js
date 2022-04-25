@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const exposureRouter = require('./routes/exposure.router');
 const hierarchyRouter = require('./routes/hierarchy.router');
 const targetRouter = require('./routes/target.router');
+const goalRouter = require('./routes/goal.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/exposure', exposureRouter);
 app.use('/api/hierarchy', hierarchyRouter);
 app.use('/api/target', targetRouter);
+app.use('/api/goal', goalRouter);
 
 // Serve static files
 app.use(express.static('build'));

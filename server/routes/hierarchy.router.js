@@ -8,8 +8,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('hierarchy GET router');
 
     const queryText = `SELECT * FROM "hierarchy"
-                 WHERE "user_id" = $1
-                 ORDER BY "rating" DESC`; 
+                       WHERE "user_id" = $1
+                       ORDER BY "rating" DESC`; 
     const values = [req.user.id];
     
     pool.query(queryText, values)

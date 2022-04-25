@@ -1,44 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Paper, Box, TextField, IconButton } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Paper, TextField, Box, Grid, Card, GridTextField, IconButton } from '@mui/material';
+
 
 function UserPage() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({ type: 'GET_TARGET' })
-  }, []);
-
   const user = useSelector((store) => store.user);
-  const [formValue, setFormValue] = useState('');
-  const targetList = useSelector(store => store.target);
-  console.log('targetList from store:', targetList);
+  const [weeklyGoal, setWeeklyGoal] = useState('');
+  const [dailyGoal, setDailyGoal] = useState('');
 
-  const submitTargetForm = () => {
-    console.log('submitTargetForm value:', formValue);
-    dispatch({ type: 'ADD_TARGET', payload: {fear: formValue}});
-    setFormValue('');
-  }
 
   return (
     <Box>
-      <form onSubmit={submitTargetForm}>
+      make inputs for daily and weekly goals
+      <form>
         <TextField
-          label="Add new target fear"
+        label="Daily Goal"
+          type="number"
           variant="outlined"
-          value={formValue}
-          sx={{ minWidth: 320 }}
-          onChange={(event) => setFormValue(event.target.value)}
+          value={dailyGoal}
+          onChange={(event) => setDailyGoal(event.target.value)}
         />
-        <IconButton type='submit'>
-          <Add />
-        </IconButton>
+        <br/>
+        <TextField
+          label="Weekly Goal"
+          type="number"
+          variant="outlined"
+          value={weeklyGoal}
+          onChange={(event) => setWeeklyGoal(event.target.value)}
+        />
       </form>
     </Box>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;

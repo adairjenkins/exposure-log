@@ -16,13 +16,6 @@ function HierarchyList() {
         dispatch({type: 'GET_HIERARCHY'})
     }, []);
 
-    // // TODO: do I need a dispatch here?  MOVED TO SITUATION
-    // const logNewExposure = (situation) => {
-    //     console.log('logNewExposure situation:', situation.description)
-
-    //     history.push(`/exposure-form/${situation.id}`);
-    // }
-
     const editSituation = (situation) => {
         console.log('editSituation', situation);
 

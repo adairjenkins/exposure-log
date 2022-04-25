@@ -31,6 +31,7 @@ function HierarchyForm() {
                     <TextField
                         required
                         label="ADD NEW SITUATION TO HIERARCHY"
+                        helperText="add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
                         sx={{minWidth: 320}}

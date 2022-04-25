@@ -5,6 +5,7 @@ import hierarchy from './hierarchy.reducer';
 import target from './target.reducer';
 import exposure from './exposure.reducer';
 import edit from './edit.reducer';
+import goal from './goal.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   hierarchy,
   target,
   exposure,
-  edit
+  edit,
+  goal
 });
 
 export default rootReducer;

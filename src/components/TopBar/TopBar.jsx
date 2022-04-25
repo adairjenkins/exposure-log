@@ -41,6 +41,9 @@ function TopBar() {
 
     return (
         <Box sx={{ flexGRow: 1 }}>
+            {user.id ?
+            
+            <>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
@@ -78,6 +81,10 @@ function TopBar() {
                     <Typography variant="h5">{headingTitle}</Typography>
                 </Toolbar>
             </AppBar>
+            </>
+            :
+            <></>
+            }
         </Box>
     )
 }
