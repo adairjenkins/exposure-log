@@ -3,6 +3,35 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
+router.get('/weekly-count', rejectUnauthenticated, (req, res) => {
+  console.log('exposure router GET weeklyCount');
+  const queryText = `SELECT COUNT(*) FROM "exposure"
+                     WHERE "date" BETWEEN (NOW() - interval '7 day') AND NOW() AND "id" = $1;
+                    `;
+  values = [req.user.id];
+  pool.query(queryText, values)
+    .then(result => {
+      res.send(result.rows);
+    }).catch(error => {
+      console.log('error in exposure weekly-count GET', error)
+    })
+});
+
+router.get('/daily-count', rejectUnauthenticated, (req, res) => {
+  console.log('exposure router GET dailyCount');
+  
+  const queryText = `SELECT * FROM "exposure"
+                     WHERE "date" BETWEEN (NOW() - interval '1 day') AND NOW() AND "id" = $2;
+                    `;
+  values = [req.user.id];
+  pool.query(queryText, values)
+    .then(result => {
+      res.send(result.rows);
+    }).catch(error => {
+      console.log('error in exposure weekly-count GET', error)
+    })
+});
+
 //GET exposure route ---------- TO-DO need to include target_id data
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('exposure GET router');

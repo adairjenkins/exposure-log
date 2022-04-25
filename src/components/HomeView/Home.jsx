@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Card } from '@mui/material';
 
 function Home() {
     const dispatch = useDispatch();
@@ -10,15 +10,19 @@ function Home() {
 
     const goals = useSelector(store => store.goal);
     console.log('goals:', goals);
+    // const weeklyCount = useSelector(store => store.) 
 
     return(
         <>
         <Typography color="red">
-        <p>HOME</p>
-        <p>• daily & weekly goal progress</p>
-        <p>• triangle graph with progression in hierarchy</p>
-        <p>• graph with average pre, peak, and post SUDS</p>
+        HOME
+        • daily & weekly goal progress
+        • triangle graph with progression in hierarchy
+        • graph with average pre, peak, and post SUDS
         </Typography>
+        <Card>
+
+        </Card>
         </>
     )
 }
