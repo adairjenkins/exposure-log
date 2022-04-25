@@ -5,18 +5,9 @@ function* getGoal() {
     console.log('saga getGoal func');
     try {
         const response = yield axios.get('/api/goal');
-        yield put({type: 'SET_GOAL', payload: response.data});
+        yield put({type: 'SET_GOAL', payload: response.data[0]});
     } catch (error) {
         console.log('saga getGoal error:', error);
-    }
-}
-function* addGoal(action) {
-    console.log('saga addGoal action.payload:', action.payload);
-    try {
-        yield axios.post('/api/goal', action.payload);
-        yield put({type: 'GET_GOAL'});
-    } catch (error) {
-        console.log('saga addGoal error:', error);
     }
 }
 
@@ -32,7 +23,6 @@ function* editGoal(action) {
 
 function* goalSaga() {
     yield takeLatest('GET_GOAL', getGoal);
-    yield takeLatest('ADD_GOAL', addGoal);
     yield takeLatest('EDIT_GOAL', editGoal);
 }
 

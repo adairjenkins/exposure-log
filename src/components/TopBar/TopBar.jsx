@@ -12,7 +12,7 @@ function TopBar() {
     const open = Boolean(anchorEl);
 
     console.log('user:', user);
-    
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -32,58 +32,57 @@ function TopBar() {
             headingTitle = 'History';
             break
         case 'user':
+            headingTitle = `Welcome, ${user.username}`;
+            break
+        case 'home':
             headingTitle = `Welcome, ${user.username}`
     }
-
-    // const handleClick = () => {
-    //     console.log('menu clicked!');
-    // }
 
     return (
         <Box sx={{ flexGRow: 1 }}>
             {user.id ?
-            
-            <>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        id="basic-button"
-                        aria-controls={open ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        onClick={handleClick}
-                    >
-                        <MoreVert />
-                    </IconButton>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        <MenuItem onClick={() => { history.push('/user') }}>
-                            <ListItemIcon>
-                                <Person />
-                            </ListItemIcon>
-                            <ListItemText>USER</ListItemText>
-                        </MenuItem>
-                        <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>
-                            <ListItemIcon>
-                                <Logout />
-                            </ListItemIcon>
-                            <ListItemText>LOGOUT</ListItemText>
-                        </MenuItem>
-                    </Menu>
 
-                    <Typography variant="h5">{headingTitle}</Typography>
-                </Toolbar>
-            </AppBar>
-            </>
-            :
-            <></>
+                <>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <IconButton
+                                id="basic-button"
+                                aria-controls={open ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}
+                            >
+                                <MoreVert />
+                            </IconButton>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={() => { history.push('/user') }}>
+                                    <ListItemIcon>
+                                        <Person />
+                                    </ListItemIcon>
+                                    <ListItemText>USER</ListItemText>
+                                </MenuItem>
+                                <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>
+                                    <ListItemIcon>
+                                        <Logout />
+                                    </ListItemIcon>
+                                    <ListItemText>LOGOUT</ListItemText>
+                                </MenuItem>
+                            </Menu>
+
+                            <Typography variant="h5">{headingTitle}</Typography>
+                        </Toolbar>
+                    </AppBar>
+                </>
+                :
+                <></>
             }
         </Box>
     )
