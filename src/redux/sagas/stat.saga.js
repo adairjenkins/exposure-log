@@ -33,10 +33,22 @@ function* getCount() {
     }
 }
 
-function* goalSaga() {
+function* getAverage() {
+    console.log('saga getAverage');
+    try {
+        const response = yield axios.get('/api/exposure/average');
+        console.log('response.data', response.data);
+        yield put ({type: 'SET_AVERAGE', payload: response.data})
+    } catch (error) {
+        console.log('saga getAverage error', error);
+    }
+}
+
+function* statSaga() {
     yield takeLatest('GET_GOAL', getGoal);
     yield takeLatest('EDIT_GOAL', editGoal);
     yield takeLatest('GET_COUNT', getCount);
+    yield takeLatest('GET_AVERAGE', getAverage);
 }
 
-export default goalSaga;
+export default statSaga;

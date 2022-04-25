@@ -7,13 +7,15 @@ function Home() {
     useEffect(() => {
         dispatch({ type: 'GET_GOAL' });
         dispatch({ type: 'GET_COUNT' });
-        //dispatch({ type: 'GET_DAILY_COUNT' });
+        dispatch({ type: 'GET_AVERAGE' });
     }, []);
 
     const goal = useSelector(store => store.goal);
     console.log('goal:', goal);
     const count = useSelector(store => store.count);
     console.log('count:', count);
+    const average = useSelector(store => store.average);
+    console.log('average:', average);
 
     return(
         <>
