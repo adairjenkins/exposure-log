@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { Typography, Card, Box, CircularProgress } from '@mui/material';
+import { Typography, Card, Box, Stack } from '@mui/material';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -34,10 +34,15 @@ function Home() {
             <Card>
 
             </Card>
+            <Stack spacing={4} direction="row">
             <Box sx={{ width: 2/5 }}>
+                <Typography>
+                    Daily Goal
+                </Typography>
                 <CircularProgressbar
                     value={dailyPercentage}
                     text={`${count.daily} of ${goal.daily}`} 
+                    strokeWidth={10}
                     styles={buildStyles({
                         pathColor: `rgba(62, 152, 199)`,
                         textColor: '#FF5733',
@@ -46,16 +51,23 @@ function Home() {
                 />
             </Box>
             <Box sx={{ width: 2/5 }}>
+            <Typography>
+                    Weekly Goal
+                </Typography>
                 <CircularProgressbar
                     value={weeklyPercentage}
                     text={`${count.weekly} of ${goal.weekly}`} 
+                    strokeWidth={10}
                     styles={buildStyles({
                         pathColor: `rgba(62, 152, 199)`,
                         textColor: '#FF5733',
-                        backgroundColor: '#FF5733'
+                        backgroundColor: '#FF5733',
+                        strokeLinecap: 'butt',
+                        textSize: '14px',
                     })}
                 />
             </Box>
+            </Stack>
         </>
     )
 }
