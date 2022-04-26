@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Stack, Card, CardContent, Paper, Typography, IconButton } from '@mui/material';
 import { Add, Delete, Edit } from '@mui/icons-material';
+import moment from 'moment';
 
 function History() {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function History() {
                 <Card key={exposure.id}>
                     <CardContent>
                         <Typography sx={{ fontSize: 13 }}>
-                            DATE: {exposure.date}
+                            {moment(exposure.date.substr(0,11) + exposure.time).format('lll')}
                         </Typography>
                         <Typography sx={{ fontSize: 20, mr: 10 }}>
                             {exposure.description}

@@ -16,6 +16,8 @@ function Home() {
     console.log('count:', count);
     const average = useSelector(store => store.average);
     console.log('average:', average);
+    const progression = useSelector(store => store.progression);
+
 
     return(
         <>
