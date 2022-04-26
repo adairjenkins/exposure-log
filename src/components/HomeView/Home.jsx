@@ -11,6 +11,7 @@ function Home() {
         dispatch({ type: 'GET_GOAL' });
         dispatch({ type: 'GET_COUNT' });
         dispatch({ type: 'GET_AVERAGE' });
+        dispatch({ type: 'GET_PROGRESSION'})
     }, []);
 
     const goal = useSelector(store => store.goal);
@@ -20,27 +21,48 @@ function Home() {
     const average = useSelector(store => store.average);
     console.log('average:', average);
     const progression = useSelector(store => store.progression);
+    console.log('progression:', progression);
 
     let dailyPercentage = 100 * (count.daily / goal.daily);
     let weeklyPercentage = 100 * (count.weekly / goal.weekly);
 
-    const config = {
+    const pyramidConfig = {
         type: 'cone',
+        legend_visible: false,
+        yAxis: {
+            label_text: 'Cost',
+            formatString: 'c'
+        },
+        defaultSeries: {
+            /*Gaps between cone section.*/
+            shape_innerPadding: 6,
+            defaultPoint: {
+                label: {
+                    text:
+                        `name goes here`,
+                    placement: 'inside',
+                    color: '0000'
+                }
+            }
+        },
         series: [
             {
+                name: 'Costs',
+                palette: 'default',
                 points: [
-                    { x: 'A', y: 50 },
-                    { x: 'B', y: 30 },
-                    { x: 'C', y: 50 }
+                    { name: 'remaining', y: 3 / 10 },
+                    { name: 'completed', y: 7 / 10 },
                 ]
             }
         ]
     };
-    
-    const divStyle = {
-        maxWidth: '700px',
-        height: '400px',
+
+    const pyramidStyle = {
+        maxWidth: '300px',
+        minWidth: '300px',
+        height: '300px',
         margin: '0px auto'
+
     };
 
     return (
@@ -55,41 +77,45 @@ function Home() {
 
             </Card>
             <Stack spacing={4} direction="row">
-            <Box sx={{ width: 2/5 }}>
-                <Typography>
-                    Daily Goal
-                </Typography>
-                <CircularProgressbar
-                    value={dailyPercentage}
-                    text={`${count.daily} of ${goal.daily}`} 
-                    strokeWidth={10}
-                    styles={buildStyles({
-                        pathColor: `rgba(62, 152, 199)`,
-                        textColor: '#FF5733',
-                        backgroundColor: '#FF5733'
-                    })}
-                />
-            </Box>
-            <Box sx={{ width: 2/5 }}>
-            <Typography>
-                    Weekly Goal
-                </Typography>
-                <CircularProgressbar
-                    value={weeklyPercentage}
-                    text={`${count.weekly} of ${goal.weekly}`} 
-                    strokeWidth={10}
-                    styles={buildStyles({
-                        pathColor: `rgba(62, 152, 199)`,
-                        textColor: '#FF5733',
-                        backgroundColor: '#FF5733',
-                        strokeLinecap: 'butt',
-                        textSize: '14px',
-                    })}
-                />
-            </Box>
+                <Box sx={{ width: 2 / 5 }}>
+                    <Typography variant="h6">
+                        Daily Goal
+                    </Typography>
+                    <CircularProgressbar
+                        value={dailyPercentage}
+                        text={`${count.daily} of ${goal.daily}`}
+                        strokeWidth={10}
+                        styles={buildStyles({
+                            pathColor: `rgba(62, 152, 199)`,
+                            textColor: '#FF5733',
+                            backgroundColor: '#FF5733'
+                        })}
+                    />
+                </Box>
+                <Box sx={{ width: 2 / 5 }}>
+                    <Typography variant="h6">
+                        Weekly Goal
+                    </Typography>
+                    <CircularProgressbar
+                        value={weeklyPercentage}
+                        text={`${count.weekly} of ${goal.weekly}`}
+                        strokeWidth={10}
+                        styles={buildStyles({
+                            pathColor: `rgba(62, 152, 199)`,
+                            textColor: '#FF5733',
+                            backgroundColor: '#FF5733',
+                            strokeLinecap: 'butt',
+                            textSize: '14px',
+                        })}
+                    />
+                </Box>
             </Stack>
-            
-            <div style={divStyle}><JSCharting options={config} /></div>
+            <Box>
+                <Typography variant="h6">
+                    Hierarchy Progression
+                </Typography>
+                <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
+            </Box>
 
         </>
     )

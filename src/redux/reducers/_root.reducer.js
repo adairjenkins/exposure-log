@@ -8,6 +8,7 @@ import edit from './edit.reducer';
 import goal from './goal.reducer';
 import count from './count.reducer';
 import average from './average.reducer';
+import progression from './progression.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   edit,
   goal,
   count, 
-  average
+  average,
+  progression
 });
 
 export default rootReducer;

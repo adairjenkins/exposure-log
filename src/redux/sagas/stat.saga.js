@@ -44,11 +44,22 @@ function* getAverage() {
     }
 }
 
+function* getProgression() {
+    console.log('saga getProgression');
+    try {
+        const response = yield axios.get('/api/exposure/progression');
+        yield put ({type: 'SET_PROGRESSION', payload: response.data})
+    } catch (error) {
+        console.log('saga getProgression error'), error;
+    }
+}
+
 function* statSaga() {
     yield takeLatest('GET_GOAL', getGoal);
     yield takeLatest('EDIT_GOAL', editGoal);
     yield takeLatest('GET_COUNT', getCount);
     yield takeLatest('GET_AVERAGE', getAverage);
+    yield takeLatest('GET_PROGRESSION', getProgression);
 }
 
 export default statSaga;

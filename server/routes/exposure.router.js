@@ -45,6 +45,20 @@ router.get('/average', rejectUnauthenticated, (req, res) => {
       })
 })
 
+router.get('/progression', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT MAX("hierarchy".rating) FROM "exposure"
+                     JOIN "hierarchy" ON "exposure".hierarchy_id = "hierarchy".id
+                     WHERE exposure."user_id" = $1;
+                     `;
+  const values = [req.user.id];
+  pool.query(queryText, values)
+      .then(result => {
+        res.send(result.rows[0]);
+      }) .catch(error => {
+        console.log('error in exposure progression GET', error);
+      })
+})
+
 //GET exposure route ---------- TO-DO need to include target_id data
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('exposure GET router');
