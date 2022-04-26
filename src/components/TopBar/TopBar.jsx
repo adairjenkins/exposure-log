@@ -39,7 +39,7 @@ function TopBar() {
     }
 
     return (
-        <Box sx={{ flexGRow: 1 }}>
+        <Box sx={{ flexGrow:1 }}>
             {user.id ?
 
                 <>
@@ -82,7 +82,13 @@ function TopBar() {
                     </AppBar>
                 </>
                 :
-                <></>
+                <AppBar>
+                    <Toolbar>
+                        <Typography variant="h5">
+                            Exposure Log
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
             }
         </Box>
     )

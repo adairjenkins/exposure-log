@@ -23,7 +23,7 @@ function History() {
 
     return (
 
-        <Stack spacing={2}>
+        <Stack spacing={2} sx={{width:"95%", marginBottom:"70px", marginTop:"20px" }}>
             {exposureList.map(exposure => (
                 <Card key={exposure.id}>
                     <CardContent>

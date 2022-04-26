@@ -54,7 +54,7 @@ function ExposureForm({ isEdit }) {
 
         console.log('submitNewForm func formValues:', formValues);
         dispatch({ type: 'ADD_EXPOSURE', payload: formValues });
-        history.push('/user');
+        history.push('/home');
         // setFormValues(emptyForm);
     }
 
@@ -62,7 +62,7 @@ function ExposureForm({ isEdit }) {
         event.preventDefault();
         console.log('submitEdit form:', formValues);
         dispatch({ type: 'EDIT_EXPOSURE', payload: formValues });
-        history.push('/user');
+        history.push('/home');
         // setFormValues()
     }
 

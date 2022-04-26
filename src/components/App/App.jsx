@@ -39,7 +39,7 @@ function App() {
     <Router>
       <div>
         < Route path="/:url">
-          < TopBar/>
+          < TopBar />
         </Route>
         {/* <Nav /> */}
         <Switch>
@@ -48,7 +48,7 @@ function App() {
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route exact path="/about" >
-          {/* shows AboutPage at all times (logged in or not) */}
+            {/* shows AboutPage at all times (logged in or not) */}
             <AboutPage />
           </Route>
 
@@ -56,34 +56,34 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          
+
           <ProtectedRoute exact path="/user" >
-          {/* logged in shows UserPage else shows LoginPage */}
+            {/* logged in shows UserPage else shows LoginPage */}
             <UserPage />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/info" >
-          {/* logged in shows InfoPage else shows LoginPage */}
+            {/* logged in shows InfoPage else shows LoginPage */}
             <InfoPage />
           </ProtectedRoute>
 
           <Route exact path="/login" >
             {/* If the user is already logged in, redirect to the /user page;
                 Otherwise, show the login page*/}
-            {user.id ? <Redirect to="/user" /> : <LoginPage /> }
+            {user.id ? <Redirect to="/home" /> : <LoginPage />}
           </Route>
 
           <Route exact path="/registration" >
             {/*If the user is already logged in, redirect them to the /user page;
                Otherwise, show the registration page*/}
-            {user.id ? <Redirect to="/user" /> : <RegisterPage /> }
+            {user.id ? <Redirect to="/user" /> : <RegisterPage />}
           </Route>
 
           <ProtectedRoute exact path="/home">
             {/*If the user is already logged in, redirect them to the /user page; 
                Otherwise, show the Landing page */}
             {/* { user.id ? <Redirect to="/user"/> : <LandingPage/> } */}
-            < Home/>
+            < Home />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/exposure-form/:id">
@@ -91,25 +91,25 @@ function App() {
               isEdit={false}
             />
           </ProtectedRoute>
-          
+
           <ProtectedRoute exact path="/exposure-form">
             < ExposureForm
               isEdit={false}
             />
-          </ProtectedRoute> 
+          </ProtectedRoute>
 
           <ProtectedRoute exact path="/exposure-edit/:id">
             < ExposureForm
               isEdit={true}
             />
-          </ProtectedRoute> 
+          </ProtectedRoute>
 
           <ProtectedRoute exact path="/target-form">
-            < TargetForm/>
+            < TargetForm />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/hierarchy">
-            < Hierarchy/>
+            < Hierarchy />
           </ProtectedRoute>
 
           {/* <ProtectedRoute exact path="edit/hierarchy/:id">
@@ -117,16 +117,15 @@ function App() {
           </ProtectedRoute> */}
 
           <ProtectedRoute exact path="/history">
-            < History/>
+            < History />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
-        
         </Switch>
-        <BottomBar />
+        <BottomBar/>
       </div>
     </Router>
   );

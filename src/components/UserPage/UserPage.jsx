@@ -8,10 +8,14 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+
+  }, []);
+
   const user = useSelector((store) => store.user);
   
-  const [weeklyGoal, setWeeklyGoal] = useState('');
-  const [dailyGoal, setDailyGoal] = useState('');
+  const [weeklyGoal, setWeeklyGoal] = useState(user.weekly_goal ? user.weekly_goal : '');
+  const [dailyGoal, setDailyGoal] = useState(user.daily_goal ? user.daily_goal : '');
 
   const updateGoals = () => {
     const goalsObj = {dailyGoal, weeklyGoal}
