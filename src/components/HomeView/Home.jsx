@@ -20,7 +20,7 @@ function Home() {
     console.log('count:', count);
     const average = useSelector(store => store.average);
     console.log('average:', average);
-    const progression = useSelector(store => store.progression);
+    const progression = useSelector(store => store.progression).max;
     console.log('progression:', progression);
 
     let dailyPercentage = 100 * (count.daily / goal.daily);
