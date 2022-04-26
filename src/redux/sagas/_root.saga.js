@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import hierarchySaga from './hierarchy.saga';
 import targetSaga from './target.saga';
 import exposureSaga from './exposure.saga';
+import statSaga from './stat.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     userSaga(),
     hierarchySaga(),
     targetSaga(),
-    exposureSaga()
+    exposureSaga(),
+    statSaga()
   ]);
 }

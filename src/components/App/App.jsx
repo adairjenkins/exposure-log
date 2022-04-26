@@ -8,7 +8,6 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../Nav/Nav';
 import BottomBar from '../BottomBar/BottomBar';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -24,6 +23,7 @@ import History from '../History/History';
 import TargetForm from '../TargetForm/TargetForm';
 import TopBar from '../TopBar/TopBar';
 import ExposureForm from '../Exposure/ExposureForm';
+import Home from '../HomeView/Home';
 import './App.css';
 
 function App() {
@@ -79,11 +79,12 @@ function App() {
             {user.id ? <Redirect to="/user" /> : <RegisterPage /> }
           </Route>
 
-          <Route exact path="/home">
+          <ProtectedRoute exact path="/home">
             {/*If the user is already logged in, redirect them to the /user page; 
                Otherwise, show the Landing page */}
-            { user.id ? <Redirect to="/user"/> : <LandingPage/> }
-          </Route>
+            {/* { user.id ? <Redirect to="/user"/> : <LandingPage/> } */}
+            < Home/>
+          </ProtectedRoute>
 
           <ProtectedRoute exact path="/exposure-form/:id">
             < ExposureForm

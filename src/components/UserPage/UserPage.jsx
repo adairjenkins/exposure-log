@@ -1,44 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Paper, Box, TextField, IconButton } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
+import { Paper, TextField, Typography, Button, Box, Grid, Card, GridTextField, IconButton } from '@mui/material';
+import { Check } from '@mui/icons-material';
 
 function UserPage() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({ type: 'GET_TARGET' })
-  }, []);
+  const history = useHistory();
 
   const user = useSelector((store) => store.user);
-  const [formValue, setFormValue] = useState('');
-  const targetList = useSelector(store => store.target);
-  console.log('targetList from store:', targetList);
+  
+  const [weeklyGoal, setWeeklyGoal] = useState('');
+  const [dailyGoal, setDailyGoal] = useState('');
 
-  const submitTargetForm = () => {
-    console.log('submitTargetForm value:', formValue);
-    dispatch({ type: 'ADD_TARGET', payload: {fear: formValue}});
-    setFormValue('');
+  const updateGoals = () => {
+    const goalsObj = {dailyGoal, weeklyGoal}
+    console.log('updateGoals:', goalsObj);
+    dispatch({type: 'EDIT_GOAL', payload: goalsObj});
+    setDailyGoal('');
+    setWeeklyGoal('');
+    history.push('/home');
   }
 
   return (
     <Box>
-      <form onSubmit={submitTargetForm}>
+      <Typography color="red">make inputs for daily and weekly goals</Typography>
+      <form onSubmit={updateGoals}>
         <TextField
-          label="Add new target fear"
+        label="Set daily goal"
+          type="number"
           variant="outlined"
-          value={formValue}
-          sx={{ minWidth: 320 }}
-          onChange={(event) => setFormValue(event.target.value)}
+          value={dailyGoal}
+          onChange={(event) => setDailyGoal(event.target.value)}
         />
-        <IconButton type='submit'>
-          <Add />
-        </IconButton>
+        <br/>
+        <TextField
+          label="Set weekly goal"
+          type="number"
+          variant="outlined"
+          value={weeklyGoal}
+          onChange={(event) => setWeeklyGoal(event.target.value)}
+        />
+        <br/>
+        <Button type="submit">Submit</Button>
       </form>
     </Box>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;
