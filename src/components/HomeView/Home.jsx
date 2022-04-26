@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Typography, Card, Box, Stack } from '@mui/material';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { JSCharting } from 'jscharting-react';
 
 function Home() {
     const dispatch = useDispatch();
@@ -22,6 +23,25 @@ function Home() {
 
     let dailyPercentage = 100 * (count.daily / goal.daily);
     let weeklyPercentage = 100 * (count.weekly / goal.weekly);
+
+    const config = {
+        type: 'cone',
+        series: [
+            {
+                points: [
+                    { x: 'A', y: 50 },
+                    { x: 'B', y: 30 },
+                    { x: 'C', y: 50 }
+                ]
+            }
+        ]
+    };
+    
+    const divStyle = {
+        maxWidth: '700px',
+        height: '400px',
+        margin: '0px auto'
+    };
 
     return (
         <>
@@ -68,6 +88,9 @@ function Home() {
                 />
             </Box>
             </Stack>
+            
+            <div style={divStyle}><JSCharting options={config} /></div>
+
         </>
     )
 }

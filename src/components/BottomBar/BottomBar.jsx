@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Home, Login, Info, ChangeHistory, Add, FormatListBulleted } from '@mui/icons-material';
+import { Home, Login, HowToReg, Info, ChangeHistory, Add, FormatListBulleted } from '@mui/icons-material';
 import { Paper, BottomNavigation, Box, BottomNavigationAction } from '@mui/material';
 
 function BottomBar() {
@@ -44,6 +44,11 @@ function BottomBar() {
             label="LOGIN"
             icon={<Login />}
             onClick={() => { history.push('/login') }}
+          />
+                    <BottomNavigationAction
+            label="REGISTER"
+            icon={<HowToReg />}
+            onClick={() => { history.push('/registration') }}
           />
         </BottomNavigation>
       }

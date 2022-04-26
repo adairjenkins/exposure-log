@@ -2,12 +2,13 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { Box } from '@mui/material';
 
 function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <Box sx={{marginTop:"100px", marginLeft:"20px"}}>
       <RegisterForm />
 
       <center>
@@ -21,7 +22,7 @@ function RegisterPage() {
           Login
         </button>
       </center>
-    </div>
+    </Box>
   );
 }
 
