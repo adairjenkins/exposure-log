@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { Typography, Card, Box, Stack } from '@mui/material';
+import { Star } from '@mui/icons-material';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { JSCharting } from 'jscharting-react';
@@ -50,8 +51,8 @@ function Home() {
                 name: 'Costs',
                 palette: 'default',
                 points: [
-                    { name: 'remaining', y: 3 / 10 },
-                    { name: 'completed', y: 7 / 10 },
+                    { name: 'remaining', y: (10 - progression) / 10 },
+                    { name: 'completed', y: progression / 10 },
                 ]
             }
         ]
@@ -83,7 +84,8 @@ function Home() {
                     </Typography>
                     <CircularProgressbar
                         value={dailyPercentage}
-                        text={`${count.daily} of ${goal.daily}`}
+                        text={dailyPercentage == 100 ? <></>
+                                                     : `${count.daily} of ${goal.daily}`}
                         strokeWidth={10}
                         styles={buildStyles({
                             pathColor: `rgba(62, 152, 199)`,

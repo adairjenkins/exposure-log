@@ -40,6 +40,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@iconify/react": "^3.2.1",
     "jscharting-react": "^1.4.0",
     "nodemon": "^2.0.4"
   },
