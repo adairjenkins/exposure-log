@@ -15,7 +15,7 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js';
+} from 'chart.js';
 
 function Home() {
     const dispatch = useDispatch();
@@ -85,46 +85,51 @@ function Home() {
         Title,
         Tooltip,
         Legend
-      );
+    );
 
     const options = {
+        tension: .4,
+        scales: {
+            y: {
+                min:0,
+                max:100,
+                title: {
+                    display: true,
+                    text: 'Subjective Units of Distress'
+            }
+        }},
         responsive: true,
         plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-          },
+            legend: {
+                display: false
+            },
+            title: {
+                display: false,
+            },
         },
-      };
+    };
 
-    
-const labels = ['January', 'February', 'March'];
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [3, 4, 8],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
-      
-      
+    const labels = ['PRE SUDS', 'Peak', 'Post'];
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Average',
+                data: [Math.round(average.pre), Math.round(average.peak), Math.round(average.post)],
+                borderColor: 'primary',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 6
+            },
+        ],
+    };
+
+
 
     return (
         <Box sx={{ marginBottom: 10 }}>
-            <Typography color="red">
-                HOME
-                • daily & weekly goal progress
-                • triangle graph with progression in hierarchy
-                • graph with average pre, peak, and post SUDS
-            </Typography>
+
             <Card>
 
             </Card>
@@ -170,7 +175,7 @@ const data = {
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
             </Box>
             <Box>
-                <Line options={options} data={data}/>
+                <Line options={options} data={data} />
             </Box>
         </Box>
     )
