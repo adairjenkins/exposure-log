@@ -80,14 +80,14 @@ function TopBar() {
                                 </MenuItem>
                             </Menu>
 
-                            <Typography variant="h5">{headingTitle}</Typography>
+                            <Typography variant="h5" sx={{marginLeft:2, fontSize:24}}>{headingTitle}</Typography>
                         </Toolbar>
                     </AppBar>
                 </>
                 :
                 <AppBar>
                     <Toolbar>
-                        <Typography variant="h5">
+                        <Typography variant="h5" sx={{marginLeft:2, fontSize:24}}>
                             Exposure Log
                         </Typography>
                     </Toolbar>
