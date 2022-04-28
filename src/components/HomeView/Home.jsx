@@ -149,7 +149,7 @@ function Home() {
 
     return (
         <Box sx={{ marginBottom: 10 }}>
-            <Stack spacing={4} direction="row">
+            <Stack spacing={4} direction="row" sx={{marginLeft:3, marginTop:4}}>
                 <Box sx={{ width: 2 / 5, maxWidth: 200}}>
                     <Typography variant="h6">
                         Daily Goal
@@ -162,7 +162,8 @@ function Home() {
                         styles={buildStyles({
                             pathColor: `rgba(62, 152, 199)`,
                             textColor: '#FF5733',
-                            backgroundColor: '#FF5733'
+                            backgroundColor: '#FF5733',
+                            textSize: '18px',
                         })}
                     />
                 </Box>
@@ -178,13 +179,13 @@ function Home() {
                             pathColor: `rgba(62, 152, 199)`,
                             textColor: '#FF5733',
                             backgroundColor: '#FF5733',
-                            strokeLinecap: 'butt',
-                            textSize: '14px',
+                            // strokeLinecap: 'butt',
+                            textSize: '18px',
                         })}
                     />
                 </Box>
             </Stack>
-            <Box sx={{width:'90%', maxWidth:500}}>
+            <Box sx={{width:'90%', maxWidth:500, marginLeft:2, marginTop:5}}>
                 <Typography variant="h6">
                     Hierarchy Progression
                 </Typography>

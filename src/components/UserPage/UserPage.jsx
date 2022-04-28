@@ -28,7 +28,6 @@ function UserPage() {
 
   return (
     <Box>
-      <Typography color="red">make inputs for daily and weekly goals</Typography>
       <form onSubmit={updateGoals}>
         <TextField
         label="Set daily goal"
@@ -36,6 +35,7 @@ function UserPage() {
           variant="outlined"
           value={dailyGoal}
           onChange={(event) => setDailyGoal(event.target.value)}
+          sx={{marginTop:4, marginLeft:3}}
         />
         <br/>
         <TextField
@@ -44,6 +44,7 @@ function UserPage() {
           variant="outlined"
           value={weeklyGoal}
           onChange={(event) => setWeeklyGoal(event.target.value)}
+          sx={{marginTop:4, marginLeft:3}}
         />
         <br/>
         <Button type="submit">Submit</Button>
