@@ -41,17 +41,13 @@ function Home() {
     const pyramidConfig = {
         type: 'cone',
         legend_visible: false,
-        yAxis: {
-            label_text: 'Cost',
-            formatString: 'c'
-        },
         defaultSeries: {
             /*Gaps between cone section.*/
             shape_innerPadding: 6,
             defaultPoint: {
                 label: {
-                    text:
-                        `name goes here`,
+                    // text:
+                    //     `name goes here`,
                     placement: 'inside',
                     color: '0000'
                 }
@@ -62,17 +58,16 @@ function Home() {
                 name: 'Costs',
                 palette: 'default',
                 points: [
-                    { name: 'remaining', y: (10 - progression) / 10 },
-                    { name: 'completed', y: progression / 10 },
+                    { label: {text:'remaining'}, name: 'remaining', y: (10 - progression) / 10 },
+                    { label: {text:'completed', font: {size: 15}}, name: 'completed', y: progression / 10 },
                 ]
             }
         ]
     };
 
     const pyramidStyle = {
-        maxWidth: '300px',
-        minWidth: '300px',
-        height: '300px',
+
+        height: '400px',
         margin: '0px auto'
 
     };
@@ -88,16 +83,41 @@ function Home() {
     );
 
     const options = {
+        aspectRatio: 1,
         tension: .4,
         scales: {
             y: {
+                position: 'bottom',
+                stackWeight: 1,
+                grid: {
+                    display: false
+                },
                 min:0,
                 max:100,
                 title: {
                     display: true,
-                    text: 'Subjective Units of Distress'
+                    text: 'Subjective Units of Distress',
+                    font: {
+                        size: 16,
+                        family: "Roboto"
+                    }
+                }
+            },
+            x: {
+                position: 'bottom',
+                grid: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Exposure',
+                    font: {
+                        size: 16,
+                        family: "Roboto"
+                    }
+                }
             }
-        }},
+        },
         responsive: true,
         plugins: {
             legend: {
@@ -110,7 +130,7 @@ function Home() {
     };
 
 
-    const labels = ['PRE SUDS', 'Peak', 'Post'];
+    const labels = ['Pre', 'Peak', 'Post'];
 
     const data = {
         labels,
@@ -129,12 +149,8 @@ function Home() {
 
     return (
         <Box sx={{ marginBottom: 10 }}>
-
-            <Card>
-
-            </Card>
             <Stack spacing={4} direction="row">
-                <Box sx={{ width: 2 / 5 }}>
+                <Box sx={{ width: 2 / 5, maxWidth: 200}}>
                     <Typography variant="h6">
                         Daily Goal
                     </Typography>
@@ -150,7 +166,7 @@ function Home() {
                         })}
                     />
                 </Box>
-                <Box sx={{ width: 2 / 5 }}>
+                <Box sx={{ width: 2 / 5, maxWidth:200 }}>
                     <Typography variant="h6">
                         Weekly Goal
                     </Typography>
@@ -168,13 +184,16 @@ function Home() {
                     />
                 </Box>
             </Stack>
-            <Box>
+            <Box sx={{width:'90%', maxWidth:500}}>
                 <Typography variant="h6">
                     Hierarchy Progression
                 </Typography>
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
             </Box>
-            <Box>
+            <Box sx={{width:'90%', maxWidth:500, marginBottom:10, marginLeft: 2}}>
+                <Typography variant="h6">
+                    Average Pre, Peak, and Post Exposure Distress Levels  
+                </Typography>
                 <Line options={options} data={data} />
             </Box>
         </Box>
