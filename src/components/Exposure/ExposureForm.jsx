@@ -88,7 +88,7 @@ function ExposureForm({ isEdit }) {
                     />
                 </Stack>
                 <Stack sx={{ marginTop: 2 }} spacing={2}>
-                    <FormControl sx={{ maxWidth: 600, width:"100%" }}>
+                    <FormControl sx={{ maxWidth: 600, width: "100%" }}>
                         <InputLabel>Situation</InputLabel>
                         <Select
                             value={formValues.hierarchy_id}
@@ -96,13 +96,13 @@ function ExposureForm({ isEdit }) {
                             onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}
                         >
                             {hierarchyList.map(situation => (
-                                <MenuItem key={situation.id} value={situation.id}>{situation.description}</MenuItem>
+                                <MenuItem key={situation.id} value={situation.id}>{situation.rating}. {situation.description}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
 
                     <TextField
-                    sx={{width:150}}
+                        sx={{ width: 150 }}
                         variant="outlined"
                         color="secondary"
                         type="number"
@@ -110,70 +110,73 @@ function ExposureForm({ isEdit }) {
                         value={formValues.duration}
                         onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
                     />
-                
-                    <FormControl sx={{maxWidth:600, width:"97%"}}>
-                        <FormLabel>pre SUDs</FormLabel>
-                        <Slider
-                            valueLabelDisplay="auto"
-                            defaultValue={0}
-                            step={5}
-                            marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                            { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                            min={0}
-                            max={100}
-                            value={formValues.pre_suds}
-                            onChange={(event) => setFormValues({ ...formValues, pre_suds: event.target.value })}
-                        />
-
-                        <FormLabel>peak SUDs</FormLabel>
-                        <Slider
-                            valueLabelDisplay="auto"
-                            defaultValue={0}
-                            step={5}
-                            marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                            { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                            min={0}
-                            max={100}
-                            value={formValues.peak_suds}
-                            onChange={(event) => setFormValues({ ...formValues, peak_suds: event.target.value })}
-                        />
-
-                        <FormLabel>post SUDs</FormLabel>
-                        <Slider
-                            valueLabelDisplay="auto"
-                            defaultValue={0}
-                            step={5}
-                            marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                            { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                            min={0}
-                            max={100}
-                            value={formValues.post_suds}
-                            onChange={(event) => setFormValues({ ...formValues, post_suds: event.target.value })}
-                        />
+                    <FormControl sx={{ maxWidth: 600, width: "97%" }}>
+                        <Box sx={{ ml: 1 }}>
+                            <FormLabel sx={{ mt: 2 }}>Pre Distress</FormLabel>
+                            <Slider
+                                valueLabelDisplay="auto"
+                                defaultValue={0}
+                                step={5}
+                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                min={0}
+                                max={100}
+                                value={formValues.pre_suds}
+                                onChange={(event) => setFormValues({ ...formValues, pre_suds: event.target.value })}
+                            />
+                        </Box>
+                        <Box sx={{ ml: 1 }}>
+                            <FormLabel>Peak distress</FormLabel>
+                            <Slider
+                                valueLabelDisplay="auto"
+                                defaultValue={0}
+                                step={5}
+                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                min={0}
+                                max={100}
+                                value={formValues.peak_suds}
+                                onChange={(event) => setFormValues({ ...formValues, peak_suds: event.target.value })}
+                            />
+                        </Box>
+                        <Box sx={{ ml: 1 }}>
+                            <FormLabel>Post Distress</FormLabel>
+                            <Slider
+                                valueLabelDisplay="auto"
+                                defaultValue={0}
+                                step={5}
+                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                min={0}
+                                max={100}
+                                value={formValues.post_suds}
+                                onChange={(event) => setFormValues({ ...formValues, post_suds: event.target.value })}
+                            />
+                        </Box>
                     </FormControl>
 
-                <TextField
-                    variant="outlined"
-                    multiline={true}
-                    rows="4"
-                    color="primary"
-                    label="Notes"
-                    name="notes"
-                    sx={{ width: "100%", maxWidth: 600 }}
-                    value={formValues.notes}
-                    onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
-                />
-                              </Stack>
+                    <TextField
+                        variant="outlined"
+                        multiline={true}
+                        rows="4"
+                        color="primary"
+                        label="Notes"
+                        name="notes"
+                        sx={{ width: "100%", maxWidth: 600 }}
+                        value={formValues.notes}
+                        onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
+                    />
+                </Stack>
                 <br />
                 {isEdit ?
                     <>
-                        <Button type="submit">SAVE CHANGES</Button>
-                        <Button onClick={() => { history.push('/history') }}>CANCEL</Button>
+                        <Button type="submit" sx={{fontSize:17}}>SAVE CHANGES</Button>
+                        <Button sx={{fontSize:17}} onClick={() => { history.push('/history') }}>CANCEL</Button>
                     </>
                     :
                     <>
-                        <Button type="submit">SAVE</Button>
-                        <Button onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
+                        <Button type="submit" sx={{fontSize:17}}>SAVE</Button>
+                        <Button sx={{fontSize:17}} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
                     </>
                 }
             </form>

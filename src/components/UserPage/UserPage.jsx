@@ -50,7 +50,7 @@ function UserPage() {
           sx={{marginTop:4, marginLeft:3}}
         />
         <br/>
-        <Button type="submit" variant="contained" sx={{marginTop:4, marginLeft:3}}>Submit</Button>
+        <Button type="submit" sx={{marginTop:4, marginLeft:3, fontSize:17}}>Submit</Button>
       </form>
     </Box>
   );

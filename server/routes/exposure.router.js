@@ -59,7 +59,7 @@ router.get('/progression', rejectUnauthenticated, (req, res) => {
       })
 })
 
-//GET exposure route ---------- TO-DO need to include target_id data
+//GET ALL exposure route ---------- TO-DO need to include target_id data
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('exposure GET router');
 
@@ -67,7 +67,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "exposure".id, "exposure".user_id, "exposure".hierarchy_id, "hierarchy".rating, "hierarchy".description, "exposure".date, "exposure"."time", "exposure".duration, "exposure".pre_suds, "exposure".peak_suds, "exposure".post_suds, "exposure".notes  FROM "exposure"
                      JOIN "hierarchy" ON "hierarchy".id = "exposure".hierarchy_id
                      WHERE "exposure".user_id = $1
-                     ORDER BY "exposure".date, "exposure"."time";
+                     ORDER BY "exposure".date DESC, "exposure"."time" DESC;
                      `; 
   const values = [req.user.id];
 
