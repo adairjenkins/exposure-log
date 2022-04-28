@@ -36,6 +36,9 @@ function TopBar() {
             break
         case 'home':
             headingTitle = `Welcome, ${user.username}`
+            break
+        case 'about':
+            headingTitle = `About Exposure Log`
     }
 
     return (
