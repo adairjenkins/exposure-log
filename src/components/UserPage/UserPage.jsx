@@ -27,7 +27,10 @@ function UserPage() {
   }
 
   return (
-    <Box>
+    <Box sx={{margin:2}}>
+      <Typography variant="h5" sx={{mt:4, ml:3}}>
+        Exposure Goals
+      </Typography>
       <form onSubmit={updateGoals}>
         <TextField
         label="Set daily goal"
@@ -35,7 +38,7 @@ function UserPage() {
           variant="outlined"
           value={dailyGoal}
           onChange={(event) => setDailyGoal(event.target.value)}
-          sx={{marginTop:4, marginLeft:3}}
+          sx={{marginTop:6, marginLeft:3}}
         />
         <br/>
         <TextField
@@ -47,7 +50,7 @@ function UserPage() {
           sx={{marginTop:4, marginLeft:3}}
         />
         <br/>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" variant="contained" sx={{marginTop:4, marginLeft:3}}>Submit</Button>
       </form>
     </Box>
   );
