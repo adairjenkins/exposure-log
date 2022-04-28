@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { Stack, Grid, Paper, IconButton, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import { Check, Close, Edit, Delete } from '@mui/icons-material';
 
-function Situation({situation}) {
+function Situation({ situation }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const [isEditing, setEditing] = useState(false);
     const [editValues, setEditValues] = useState(situation);
-    
+
     // TODO: do I need a dispatch here?
     const logNewExposure = (situation) => {
         console.log('logNewExposure situation:', situation.description)
@@ -19,28 +19,28 @@ function Situation({situation}) {
     const commitEdit = (event) => {
         event.preventDefault();
         console.log('editValues:', editValues)
-        dispatch({type: 'EDIT_HIERARCHY', payload: editValues})
+        dispatch({ type: 'EDIT_HIERARCHY', payload: editValues })
         setEditing(false);
     }
 
     // FIXME: fix delete request - doesn't work if there's any associated exposures (potentially change those hierarchy_id values to NULL/0)
     const deleteSituation = (id) => {
         console.log('deleteSituation id:', id);
-        dispatch({type: 'DELETE_HIERARCHY', payload: id});
+        dispatch({ type: 'DELETE_HIERARCHY', payload: id });
     }
 
     return (
         <>
-        {isEditing ?  
-            <Box>
-                <TextField
-                    value={editValues.description}
-                    onChange={(event) => setEditValues({...editValues, description: event.target.value})}
-                />
-                    <FormControl required sx={{minWidth: 110}}>
+            {isEditing ?
+                <Box>
+                    <TextField
+                        value={editValues.description}
+                        onChange={(event) => setEditValues({ ...editValues, description: event.target.value })}
+                    />
+                    <FormControl required sx={{ minWidth: 110 }}>
                         <Select
                             value={editValues.rating}
-                            onChange={(event) => setEditValues({...editValues, rating: event.target.value})}
+                            onChange={(event) => setEditValues({ ...editValues, rating: event.target.value })}
                         >
                             <MenuItem key={1} value={1}>{1}</MenuItem>
                             <MenuItem key={2} value={2}>{2}</MenuItem>
@@ -54,34 +54,37 @@ function Situation({situation}) {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                <IconButton onClick={commitEdit}>
-                    <Check/>
-                </IconButton>
-                <IconButton onClick={() => setEditing(false)}>
-                    <Close/>
-                </IconButton>
-            </Box> 
-                
-            : 
-            <>
-                <Box onClick={() => logNewExposure(situation)}>
-                    <Typography >
-                        {situation.description}
-                    </Typography>
-                    <Typography>
-                        rating: {situation.rating}
-                    </Typography>
+                    <IconButton onClick={commitEdit}>
+                        <Check />
+                    </IconButton>
+                    <IconButton onClick={() => setEditing(false)}>
+                        <Close />
+                    </IconButton>
                 </Box>
-            
-                <IconButton onClick={() => setEditing(true)}>
-                    <Edit/>
-                </IconButton>
-                <IconButton onClick={() => deleteSituation(situation.id)}>
-                    <Delete/>
-                </IconButton>
-            </>
-        }
-        
+
+                :
+                <>
+                    <Box onClick={() => logNewExposure(situation)}>
+                        <Typography sx={{ fontSize:18}}>
+                            {situation.description}
+                        </Typography>
+                    </Box>
+                    <Stack direction="row" justifyContent="space-between">
+                        <Typography sx={{ fontSize: 14 }}>
+                            rating: {situation.rating}
+                        </Typography>
+                        <Box>
+                        <IconButton onClick={() => setEditing(true)}>
+                            <Edit />
+                        </IconButton>
+                        <IconButton onClick={() => deleteSituation(situation.id)}>
+                            <Delete />
+                        </IconButton>
+                        </Box>
+                    </Stack>
+                </>
+            }
+
         </>
     )
 }

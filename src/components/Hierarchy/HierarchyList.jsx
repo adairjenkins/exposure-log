@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Stack, Grid, Paper, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
-import { Add, DeleteOutlined, EditOutlined} from '@mui/icons-material';
+import { Stack, TableCell, Table, TableHead, TableRow, TableBody, Grid, Paper, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel, TableContainer } from '@mui/material';
+import { Add, DeleteOutlined, EditOutlined } from '@mui/icons-material';
 import Situation from './Situation';
 import EditSituation from './EditSituation';
 
@@ -13,22 +13,18 @@ function HierarchyList() {
     console.log('hierarchyList from store:', hierarchyList);
 
     useEffect(() => {
-        dispatch({type: 'GET_HIERARCHY'})
+        dispatch({ type: 'GET_HIERARCHY' })
     }, []);
 
-    const editSituation = (situation) => {
-        console.log('editSituation', situation);
-
-    }
-
     return (
-        <Stack spacing={2} sx={{width:"70%", marginBottom:"70px", marginTop:"20px" }}>
-            {hierarchyList.map(situation => (
+        <>
+            <Stack spacing={1.5} sx={{ width: "90%", marginBottom: "70px", marginTop: "20px", marginLeft:2 }}>
+                {hierarchyList.map(situation => (
                     <Paper variant="outlined" key={situation.id} sx={{
                         '&:hover': {
-                          backgroundColor: "#ededed",
-                        }, 
-                      }}>
+                            backgroundColor: "#ededed",
+                        }, padding:1
+                    }}>
                         {/* main view */}
                         < Situation
                             situation={situation}
@@ -37,9 +33,27 @@ function HierarchyList() {
                             situation={situation} 
                         /> */}
                     </Paper>
-            ))}
-        </Stack>
-
+                ))}
+            </Stack>
+            {/* <TableContainer component={Paper}>
+                <Table sx={{}} >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="left">SITUATION</TableCell>
+                            <TableCell align="left">RATING</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {hierarchyList.map(situation => (
+                        <TableRow key={situation.id}>
+                            <TableCell align="left">{situation.description}</TableCell>
+                            <TableCell>{situation.rating}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer> */}
+        </>
     )
 }
 
