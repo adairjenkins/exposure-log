@@ -30,15 +30,14 @@ function HierarchyForm() {
             <Grid container>
                     <TextField
                         required
-                        label="ADD NEW SITUATION TO HIERARCHY"
-                        helperText="add new situation to hierarchy"
+                        label="Add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
-                        sx={{minWidth: 320}}
+                        sx={{minWidth: 320, margin:2}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
-                    <FormControl required sx={{minWidth: 110}}>
-                        <InputLabel>RATING</InputLabel>
+                    <FormControl required sx={{minWidth: 110, margin:2, marginTop:0, marginBottom:0}}>
+                        <InputLabel>Rating</InputLabel>
                         <Select
                             value={formValues.rating}
                             onChange={(event) => setFormValues({...formValues, rating: event.target.value})}

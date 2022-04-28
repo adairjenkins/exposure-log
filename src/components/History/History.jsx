@@ -23,10 +23,10 @@ function History() {
 
     return (
 
-        <Stack spacing={2} sx={{width:"95%", marginBottom:"70px", marginTop:"20px" }}>
+        <Stack spacing={1.5} sx={{width:"90%", marginBottom:"70px", marginTop:"20px", marginLeft:2}}>
             {exposureList.map(exposure => (
-                <Card key={exposure.id}>
-                    <CardContent>
+                <Paper key={exposure.id} variant="outlined">
+
                         <Typography sx={{ fontSize: 13 }}>
                             {moment(exposure.date.substr(0,11) + exposure.time).format('lll')}
                         </Typography>
@@ -45,7 +45,7 @@ function History() {
                         <Typography display="inline" sx={{ mr: 5 }}>
                             post: {exposure.post_suds}
                         </Typography>
-                    </CardContent>
+
 
                     <IconButton onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
                         <Edit />
@@ -53,7 +53,7 @@ function History() {
                     <IconButton onClick={() => deleteExposure(exposure.id)}>
                         <Delete />
                     </IconButton>
-                </Card>
+                </Paper>
             ))}
         </Stack>
     )
