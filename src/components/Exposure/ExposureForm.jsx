@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Grid, Stack, Container, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
+import { Grid, Stack, Container, Box, TextField, FormControl, FormLabel, Slider, InputLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, ButtonGroup, Button } from '@mui/material';
 
 function ExposureForm({ isEdit }) {
     useEffect(() => {
@@ -67,56 +67,51 @@ function ExposureForm({ isEdit }) {
     }
 
     return (
-        <Container maxWidth="md">
+        <Box maxWidth="md" sx={{ margin: 3 }}>
             <form onSubmit={isEdit ? submitEdit : submitNewForm} >
-                <Grid container spacing={1} align="center">
-                    <Grid item xs={6}>
-                        <TextField
-                            variant="outlined"
-                            color="secondary"
-                            type="date"
-                            label="DATE"
-                            value={formValues.date}
-                            onChange={(event) => setFormValues({ ...formValues, date: event.target.value })}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            variant="outlined"
-                            color="secondary"
-                            type="time"
-                            label="time"
-                            value={formValues.time}
-                            onChange={(event) => setFormValues({ ...formValues, time: event.target.value })}
-                        />
-                    </Grid>
-                    <Grid item xs={9}>
-                        <FormControl sx={{ minWidth: 130 }}>
-                            <InputLabel>SITUATION</InputLabel>
-                            <Select
-                                value={formValues.hierarchy_id}
-                                defaultValue={formValues.hierarchy_id}
-                                onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}
-                            >
-                                {hierarchyList.map(situation => (
-                                    <MenuItem key={situation.id} value={situation.id}>{situation.description}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <TextField
-                            variant="outlined"
-                            color="secondary"
-                            type="number"
-                            label="DURATION (min)"
-                            value={formValues.duration}
-                            onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
-                        />
-                    </Grid>
-                </Grid>
-                <Stack sx={{ width: "80%", minWidth: 300 }}>
-                    <FormControl >
+                <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
+                    <TextField
+                        variant="outlined"
+                        color="secondary"
+                        type="date"
+                        // label="DATE"
+                        value={formValues.date}
+                        onChange={(event) => setFormValues({ ...formValues, date: event.target.value })}
+                    />
+                    <TextField
+                        variant="outlined"
+                        color="secondary"
+                        type="time"
+                        // label="time"
+                        value={formValues.time}
+                        onChange={(event) => setFormValues({ ...formValues, time: event.target.value })}
+                    />
+                </Stack>
+                <Stack sx={{ marginTop: 2 }} spacing={2}>
+                    <FormControl sx={{ maxWidth: 600, width:"100%" }}>
+                        <InputLabel>Situation</InputLabel>
+                        <Select
+                            value={formValues.hierarchy_id}
+                            defaultValue={formValues.hierarchy_id}
+                            onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}
+                        >
+                            {hierarchyList.map(situation => (
+                                <MenuItem key={situation.id} value={situation.id}>{situation.description}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    <TextField
+                    sx={{width:150}}
+                        variant="outlined"
+                        color="secondary"
+                        type="number"
+                        label="Duration (min)"
+                        value={formValues.duration}
+                        onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
+                    />
+                
+                    <FormControl sx={{maxWidth:600, width:"97%"}}>
                         <FormLabel>pre SUDs</FormLabel>
                         <Slider
                             valueLabelDisplay="auto"
@@ -156,17 +151,20 @@ function ExposureForm({ isEdit }) {
                             onChange={(event) => setFormValues({ ...formValues, post_suds: event.target.value })}
                         />
                     </FormControl>
-                </Stack>
+
                 <TextField
                     variant="outlined"
+                    multiline={true}
+                    rows="4"
                     color="primary"
-                    label="NOTES"
+                    label="Notes"
                     name="notes"
-                    sx={{ width: "80%", minWidth: 300 }}
+                    sx={{ width: "100%", maxWidth: 600 }}
                     value={formValues.notes}
                     onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
                 />
-                <br/>
+                              </Stack>
+                <br />
                 {isEdit ?
                     <>
                         <Button type="submit">SAVE CHANGES</Button>
@@ -179,7 +177,7 @@ function ExposureForm({ isEdit }) {
                     </>
                 }
             </form>
-        </Container>
+        </Box>
     )
 }
 
