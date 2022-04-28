@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Button, Typography, Box } from '@mui/material';
+import { Button, Stack, Typography, Input, Box, TextField, InputLabel } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 function LoginForm() {
@@ -29,7 +29,7 @@ function LoginForm() {
   }; // end login
 
   return (
-    <Box sx={{margin:3}}>
+    <Box sx={{ margin: 3 }}>
       <form className="formPanel" onSubmit={login}>
         <Typography variant="h5">Login</Typography>
         {errors.loginMessage && (
@@ -37,31 +37,34 @@ function LoginForm() {
             {errors.loginMessage}
           </h3>
         )}
-        <Box sx={{ mt: 3 }}>
-          <label htmlFor="username">
-            Username:
-            <input
+        <Stack direction="row" sx={{ mt: 3 }}>
+          <InputLabel htmlFor="username" sx={{paddingTop:1, marginRight:2, fontSize:18}}>Username:</InputLabel>
+            <TextField
               type="text"
               name="username"
+              size="small"
+              variant="outlined"
               required
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
-          </label>
+        </Stack>
+        <Stack direction="row" sx={{ mt: 2 }}>
+          <InputLabel htmlFor="password" sx={{paddingTop:1, marginRight:2, fontSize:18}}>Password:</InputLabel>
+          <TextField
+            size="small"
+            variant="outlined"
+            type="password"
+            name="password"
+            // label="password"
+            required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </Stack>
+          <Box sx={{display: 'flex', justifyContent: 'flex-end', marginRight:3 }}>
+        <Button variant="contained" type="submit" sx={{ mt: 3}}>SUBMIT</Button>
         </Box>
-        <Box sx={{mt:2}}>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-        </Box>
-        <Button variant="contained" type="submit" sx={{mt:3}}>SUBMIT</Button>
         {/* <div>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div> */}
