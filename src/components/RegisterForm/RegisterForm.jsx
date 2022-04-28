@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Typography, Stack, InputLabel, TextField, Button } from '@mui/material';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -20,41 +21,43 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
+    <Box sx={{ margin: 3 }}>
+      <form className="formPanel" onSubmit={registerUser}>
+        <Typography variant="h5">Register User</Typography>
+        {errors.registrationMessage && (
+          <h3 className="alert" role="alert">
+            {errors.registrationMessage}
+          </h3>
+        )}
+        <Stack direction="row" sx={{ mt: 3 }}>
+          <InputLabel htmlFor="username" sx={{ paddingTop: 1, marginRight: 2, fontSize: 18 }}>Username:</InputLabel>
+          <TextField
+            size="small"
             type="text"
             name="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
+        </Stack>
+        <Stack direction="row" sx={{ mt: 2 }}>
+          <InputLabel htmlFor="password" sx={{ paddingTop: 1, marginRight: 2, fontSize: 18 }}>Password:</InputLabel>
+          <TextField
+            size="small"
             type="password"
             name="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+        </Stack>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginRight: 3 }}>
+          <Button variant="contained" type="submit" sx={{ mt: 3 }}>
+            REGISTER
+          </Button>
+        </Box>
+      </form>
+    </Box>
   );
 }
 
