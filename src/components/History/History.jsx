@@ -25,7 +25,7 @@ function History() {
 
         <Stack spacing={1.5} sx={{ width: "90%", marginBottom: "70px", marginTop: "20px", marginLeft: 2 }}>
             {exposureList.map(exposure => (
-                <Paper key={exposure.id} variant="outlined" sx={{padding:.8}}>
+                <Paper key={exposure.id} variant="outlined" sx={{padding:.8}} onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
                     <Stack direction="row" justifyContent="space-between">
                     <Typography>
                         RATING: {exposure.rating}
@@ -49,16 +49,14 @@ function History() {
                                 post: {exposure.post_suds}
                             </Typography>
                         </Stack>
-
-
-                        <Box>
+                        {/* <Box>
                             <IconButton onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
                                 <Edit />
                             </IconButton>
                             <IconButton onClick={() => deleteExposure(exposure.id)}>
                                 <Delete />
                             </IconButton>
-                        </Box>
+                        </Box> */}
                     </Stack>
                 </Paper>
             ))}

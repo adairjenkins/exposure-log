@@ -34,10 +34,11 @@ function Situation({ situation }) {
             {isEditing ?
                 <Box>
                     <TextField
+                        sx={{width:270}}
                         value={editValues.description}
                         onChange={(event) => setEditValues({ ...editValues, description: event.target.value })}
                     />
-                    <FormControl required sx={{ minWidth: 110 }}>
+                    <FormControl required>
                         <Select
                             value={editValues.rating}
                             onChange={(event) => setEditValues({ ...editValues, rating: event.target.value })}

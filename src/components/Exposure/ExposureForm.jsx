@@ -32,6 +32,7 @@ function ExposureForm({ isEdit }) {
         console.log(editExposure.date);
         // set form default to exposure chosen for edit
         form = editExposure;
+        console.log('FORM:', form);
     } else {
         // unpopulated form to log new exposure
         // checks whether there's data in useParams & form comes with select situation pre-populated
@@ -64,6 +65,12 @@ function ExposureForm({ isEdit }) {
         dispatch({ type: 'EDIT_EXPOSURE', payload: formValues });
         history.push('/home');
         // setFormValues()
+    }
+
+    const deleteExposure = (id) => {
+        console.log('deleteExposure id:', id);
+        dispatch({ type: 'DELETE_EXPOSURE', payload: id });
+        history.push('/history');
     }
 
     return (
@@ -169,10 +176,11 @@ function ExposureForm({ isEdit }) {
                 </Stack>
                 <br />
                 {isEdit ?
-                    <>
-                        <Button type="submit" sx={{fontSize:17}}>SAVE CHANGES</Button>
+                    <Stack direction="row" justifyContent="space-around">
+                        <Button type="submit" sx={{fontSize:17}}>SAVE</Button>
                         <Button sx={{fontSize:17}} onClick={() => { history.push('/history') }}>CANCEL</Button>
-                    </>
+                        <Button sx={{fontSize:17}} onClick={() => deleteExposure(form.id)}>DELETE</Button>
+                    </Stack>
                     :
                     <>
                         <Button type="submit" sx={{fontSize:17}}>SAVE</Button>
