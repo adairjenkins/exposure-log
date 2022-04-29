@@ -41,6 +41,11 @@ function TopBar() {
             headingTitle = `About Exposure Log`
     }
 
+    const handleLogOut = () => {
+        dispatch({ type: 'LOGOUT' });
+        setAnchorEl(null);
+    }
+
     return (
         <Box sx={{ flexGrow:1 }}>
             {user.id ?
@@ -72,7 +77,7 @@ function TopBar() {
                                     </ListItemIcon>
                                     <ListItemText>USER</ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>
+                                <MenuItem onClick={handleLogOut}>
                                     <ListItemIcon>
                                         <Logout />
                                     </ListItemIcon>
