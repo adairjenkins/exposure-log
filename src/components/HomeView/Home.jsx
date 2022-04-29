@@ -54,6 +54,7 @@ function Home() {
     let dailyPercentage = 100 * (count.daily / goal.daily);
     let weeklyPercentage = 100 * (count.weekly / goal.weekly);
 
+
     const pyramidConfig = {
         type: 'cone',
         legend_visible: false,
@@ -97,7 +98,7 @@ function Home() {
         Tooltip,
         Legend
     );
-
+    // line graph options
     const options = {
         aspectRatio: 1,
         tension: .4,
@@ -144,28 +145,37 @@ function Home() {
             },
         },
     };
-
-
+    // line graph horizontal labels
     const labels = ['Pre', 'Peak', 'Post'];
-
+    // line graph data
     const data = {
         labels,
-        datasets: [
-            {
-                label: 'Average',
-                data: [Math.round(average.pre), Math.round(average.peak), Math.round(average.post)],
-                borderColor: 'primary',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderWidth: 6
-            }, {
-                label: 'Average',
-                data: [50, Math.round(average.peak), Math.round(average.post)],
-                borderColor: 'primary',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderWidth: 6
-            }
-        ],
+        datasets: graphExposures.map((exposure, i) => (
+                        {
+                            label: exposure.description,
+                            data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
+                            borderColor: `rgba(255, 67, ${172*i}, ${17*(i+1)})`,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderWidth: 6
+                        }
+                        ))
+            // {
+            //     label: 'Average',
+            //     data: [Math.round(average.pre), Math.round(average.peak), Math.round(average.post)],
+            //     borderColor: 'rgba(255, 67, 172, 0.5)',
+            //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            //     borderWidth: 6
+            // }, 
+            //  {
+            //     label: 'Average',
+            //     data: [50, Math.round(average.peak), Math.round(average.post)],
+            //     borderColor: 'primary',
+            //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            //     borderWidth: 6
+            // }
+        ,
     };
+    console.log('line graph data.dataset', data.datasets)
 
 
 
@@ -177,9 +187,9 @@ function Home() {
                         Daily Goal
                     </Typography>
                     <ProgressCircle
-                        percentage = {dailyPercentage}
-                        count = {count.daily}
-                        goal = {goal.daily}
+                        percentage={dailyPercentage}
+                        count={count.daily}
+                        goal={goal.daily}
                     />
                 </Box>
                 <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
@@ -187,9 +197,9 @@ function Home() {
                         Weekly Goal
                     </Typography>
                     <ProgressCircle
-                        percentage = {weeklyPercentage}
-                        count = {count.weekly}
-                        goal = {goal.weekly}
+                        percentage={weeklyPercentage}
+                        count={count.weekly}
+                        goal={goal.weekly}
                     />
                 </Box>
             </Stack>
