@@ -98,6 +98,7 @@ function ExposureForm({ isEdit }) {
                     <FormControl sx={{ maxWidth: 600, width: "100%" }}>
                         <InputLabel>Situation</InputLabel>
                         <Select
+                            label="Situation"
                             value={formValues.hierarchy_id}
                             defaultValue={formValues.hierarchy_id}
                             onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}

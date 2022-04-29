@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, PureComponent } from 'react';
-import { Typography, Card, Box, Stack } from '@mui/material';
+import { useEffect, PureComponent, useState } from 'react';
+import { Typography, Card, Box, FormHelperText, Stack, FormControl, MenuItem, InputLabel, Select } from '@mui/material';
 import { Star } from '@mui/icons-material';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -16,6 +16,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import ProgressCircle from './ProgressCircle';
 
 function Home() {
     const dispatch = useDispatch();
@@ -24,6 +25,8 @@ function Home() {
         dispatch({ type: 'GET_COUNT' });
         dispatch({ type: 'GET_AVERAGE' });
         dispatch({ type: 'GET_PROGRESSION' })
+        dispatch({ type: 'GET_HIERARCHY' })
+        dispatch({ type: 'GET_EXPOSURE' })
     }, []);
 
     const goal = useSelector(store => store.goal);
@@ -34,6 +37,19 @@ function Home() {
     console.log('average:', average);
     const progression = useSelector(store => store.progression).max;
     console.log('progression:', progression);
+    const hierarchyList = useSelector(store => store.hierarchy);
+    console.log('hierarchyList:', hierarchyList);
+    const exposureList = useSelector(store => store.exposure);
+    console.log('exposureList:', exposureList);
+
+    //holds id of selected hierarchy situation
+    const [graphId, setGraphId] = useState('');
+    //filter exposureList for hierarchy_id matching selected hierarchy id
+    const graphExposures = exposureList.filter(exposure => {
+        return exposure.hierarchy_id == graphId
+    })
+    console.log('graphExposures:', graphExposures);
+
 
     let dailyPercentage = 100 * (count.daily / goal.daily);
     let weeklyPercentage = 100 * (count.weekly / goal.weekly);
@@ -58,8 +74,8 @@ function Home() {
                 name: 'Costs',
                 palette: 'default',
                 points: [
-                    { label: {text:'remaining'}, name: 'remaining', y: (10 - progression) / 10 },
-                    { label: {text:'completed', font: {size: 15}}, name: 'completed', y: progression / 10 },
+                    { label: { text: 'remaining' }, name: 'remaining', y: (10 - progression) / 10 },
+                    { label: { text: 'completed', font: { size: 15 } }, name: 'completed', y: progression / 10 },
                 ]
             }
         ]
@@ -92,8 +108,8 @@ function Home() {
                 grid: {
                     display: false
                 },
-                min:0,
-                max:100,
+                min: 0,
+                max: 100,
                 title: {
                     display: true,
                     text: 'Distress',
@@ -141,7 +157,13 @@ function Home() {
                 borderColor: 'primary',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 6
-            },
+            }, {
+                label: 'Average',
+                data: [50, Math.round(average.peak), Math.round(average.post)],
+                borderColor: 'primary',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 6
+            }
         ],
     };
 
@@ -149,55 +171,54 @@ function Home() {
 
     return (
         <Box sx={{ marginBottom: 10 }}>
-            <Stack spacing={4} direction="row" sx={{marginLeft:3, marginTop:4}}>
-                <Box sx={{ width: 2 / 5, maxWidth: 200}}>
+            <Stack spacing={4} direction="row" sx={{ marginLeft: 3, marginTop: 4 }}>
+                <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
                     <Typography variant="h6">
                         Daily Goal
                     </Typography>
-                    <CircularProgressbar
-                        value={dailyPercentage}
-                        text={dailyPercentage == 100 ? <></>
-                            : `${count.daily} of ${goal.daily}`}
-                        strokeWidth={10}
-                        styles={buildStyles({
-                            pathColor: `rgba(62, 152, 199)`,
-                            textColor: '#FF5733',
-                            backgroundColor: '#FF5733',
-                            textSize: '18px',
-                        })}
+                    <ProgressCircle
+                        percentage = {dailyPercentage}
+                        count = {count.daily}
+                        goal = {goal.daily}
                     />
                 </Box>
-                <Box sx={{ width: 2 / 5, maxWidth:200 }}>
+                <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
                     <Typography variant="h6">
                         Weekly Goal
                     </Typography>
-                    <CircularProgressbar
-                        value={weeklyPercentage}
-                        text={`${count.weekly} of ${goal.weekly}`}
-                        strokeWidth={10}
-                        styles={buildStyles({
-                            pathColor: `rgba(62, 152, 199)`,
-                            textColor: '#FF5733',
-                            backgroundColor: '#FF5733',
-                            // strokeLinecap: 'butt',
-                            textSize: '18px',
-                        })}
+                    <ProgressCircle
+                        percentage = {weeklyPercentage}
+                        count = {count.weekly}
+                        goal = {goal.weekly}
                     />
                 </Box>
             </Stack>
-            <Box sx={{width:'90%', maxWidth:500, marginLeft:2, marginTop:5}}>
+            <Box sx={{ width: '90%', maxWidth: 500, marginLeft: 2, marginTop: 5 }}>
                 <Typography variant="h6">
                     Hierarchy Progression
                 </Typography>
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
             </Box>
-            <Box sx={{width:'90%', maxWidth:500, marginBottom:10, marginLeft: 2}}>
+            <Box sx={{ width: '90%', maxWidth: 500, marginBottom: 10, marginLeft: 2 }}>
                 <Typography variant="h6">
-                    Average Pre, Peak, and Post Exposure Distress Levels  
+                    Exposure Distress Levels
                 </Typography>
+                <FormControl sx={{ maxWidth: 600, width: "100%" }}>
+                    <InputLabel>Situation</InputLabel>
+                    <Select
+                        value={graphId}
+                        label="Situation"
+                        // defaultValue={formValues.hierarchy_id}
+                        onChange={(event) => setGraphId(event.target.value)}
+                    >
+                        {hierarchyList.map(situation => (
+                            <MenuItem key={situation.id} value={situation.id}>{situation.rating}. {situation.description}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
                 <Line options={options} data={data} />
             </Box>
-        </Box>
+        </Box >
     )
 }
 
