@@ -96,7 +96,7 @@ function Home() {
                 max:100,
                 title: {
                     display: true,
-                    text: 'Subjective Units of Distress',
+                    text: 'Distress',
                     font: {
                         size: 16,
                         family: "Roboto"
