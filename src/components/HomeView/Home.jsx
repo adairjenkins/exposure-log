@@ -156,7 +156,7 @@ function Home() {
                             label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
                             data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
                             borderColor: `rgba(${100}, ${0}, ${255 * (i + 1)/graphExposures.length}, 1)`,
-                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            backgroundColor: 'rgba(255, 99, 132, 0)',
                             borderWidth: 6
                         }
                         ))

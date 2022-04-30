@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Stack, Card, CardContent, Paper, Typography, IconButton, Box } from '@mui/material';
-import { Add, Delete, Edit } from '@mui/icons-material';
+import { Add, Delete, Edit, MoreHoriz } from '@mui/icons-material';
 import moment from 'moment';
 
 function History() {
@@ -25,7 +25,7 @@ function History() {
 
         <Stack spacing={1.5} sx={{ width: "90%", marginBottom: "70px", marginTop: "20px", marginLeft: 2 }}>
             {exposureList.map(exposure => (
-                <Paper key={exposure.id} variant="outlined" sx={{padding:.8}} onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
+                <Paper key={exposure.id} variant="outlined" sx={{padding:.8}}>
                     <Stack direction="row" justifyContent="space-between">
                     <Typography>
                         RATING: {exposure.rating}
@@ -49,6 +49,9 @@ function History() {
                                 post: {exposure.post_suds}
                             </Typography>
                         </Stack>
+                        <IconButton onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
+                            <MoreHoriz/>
+                        </IconButton>
                         {/* <Box>
                             <IconButton onClick={() => history.push(`/exposure-edit/${exposure.id}`)}>
                                 <Edit />

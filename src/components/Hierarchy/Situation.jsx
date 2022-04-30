@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Stack, Grid, Paper, IconButton, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
-import { Check, Close, Edit, Delete } from '@mui/icons-material';
+import { Check, Close, Edit, DeleteOutline, MoreHoriz } from '@mui/icons-material';
 
 function Situation({ situation }) {
     const history = useHistory();
@@ -34,7 +34,7 @@ function Situation({ situation }) {
             {isEditing ?
                 <Box>
                     <TextField
-                        sx={{width:270}}
+                        sx={{ width: 270 }}
                         value={editValues.description}
                         onChange={(event) => setEditValues({ ...editValues, description: event.target.value })}
                     />
@@ -55,18 +55,23 @@ function Situation({ situation }) {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                    <IconButton onClick={commitEdit}>
-                        <Check />
-                    </IconButton>
-                    <IconButton onClick={() => setEditing(false)}>
-                        <Close />
-                    </IconButton>
+                    <Stack direction="row" justifyContent="space-around" sx={{width:"60%"}}>
+                        <IconButton onClick={commitEdit}>
+                            <Check />
+                        </IconButton>
+                        <IconButton onClick={() => setEditing(false)}>
+                            <Close />
+                        </IconButton>
+                        <IconButton onClick={() => deleteSituation(situation.id)}>
+                            <DeleteOutline />
+                        </IconButton>
+                    </Stack>
                 </Box>
 
                 :
                 <>
                     <Box onClick={() => logNewExposure(situation)}>
-                        <Typography sx={{ fontSize:18}}>
+                        <Typography sx={{ fontSize: 18 }}>
                             {situation.description}
                         </Typography>
                     </Box>
@@ -74,14 +79,9 @@ function Situation({ situation }) {
                         <Typography sx={{ fontSize: 14 }}>
                             rating: {situation.rating}
                         </Typography>
-                        <Box>
                         <IconButton onClick={() => setEditing(true)}>
-                            <Edit />
+                            <MoreHoriz />
                         </IconButton>
-                        <IconButton onClick={() => deleteSituation(situation.id)}>
-                            <Delete />
-                        </IconButton>
-                        </Box>
                     </Stack>
                 </>
             }
