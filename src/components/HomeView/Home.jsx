@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, PureComponent, useState } from 'react';
 import { Typography, Card, Box, FormHelperText, Stack, FormControl, MenuItem, InputLabel, Select } from '@mui/material';
 import { Star } from '@mui/icons-material';
+import moment from 'moment';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { JSCharting } from 'jscharting-react';
@@ -138,7 +139,7 @@ function Home() {
         responsive: true,
         plugins: {
             legend: {
-                display: false
+                display: true
             },
             title: {
                 display: false,
@@ -152,9 +153,9 @@ function Home() {
         labels,
         datasets: graphExposures.map((exposure, i) => (
                         {
-                            label: exposure.description,
+                            label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
                             data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
-                            borderColor: `rgba(255, 67, ${172*i}, ${17*(i+1)})`,
+                            borderColor: `rgba(${100}, ${0}, ${255 * (i + 1)/graphExposures.length}, 1)`,
                             backgroundColor: 'rgba(255, 99, 132, 0.5)',
                             borderWidth: 6
                         }
