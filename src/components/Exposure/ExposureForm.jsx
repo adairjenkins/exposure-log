@@ -83,6 +83,11 @@ function ExposureForm({ isEdit }) {
         setFormValues({ ...formValues, duration: '20' });
     }
 
+    const secretButtonDistress = () => {
+        console.log('secret button');
+        setFormValues({...formValues, pre_suds: 30, peak_suds: 40, post_suds: 20 });
+    }
+
     return (
         <Box maxWidth="md" sx={{ margin: 3, mb: 10 }}>
             <form onSubmit={isEdit ? submitEdit : submitNewForm} >
@@ -136,7 +141,7 @@ function ExposureForm({ isEdit }) {
                     </Stack>
                     <FormControl sx={{ maxWidth: 600, width: "97%" }} required>
                         <Box sx={{ ml: 1 }}>
-                            <FormLabel sx={{ mt: 2 }}>Pre Distress</FormLabel>
+                            <FormLabel sx={{ mt: 2 }} onClick={secretButtonDistress}>Pre Distress</FormLabel>
                             <Slider
                                 valueLabelDisplay="auto"
                                 defaultValue={0}
