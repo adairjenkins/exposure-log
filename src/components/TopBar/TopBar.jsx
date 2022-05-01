@@ -32,10 +32,10 @@ function TopBar() {
             headingTitle = 'History';
             break
         case 'user':
-            headingTitle = `Welcome, ${user.username}`;
+            headingTitle = `Welcome, ${user.first_name}`;
             break
         case 'home':
-            headingTitle = `Welcome, ${user.username}`
+            headingTitle = `Welcome, ${user.first_name}`
             break
         case 'about':
             headingTitle = `About Exposure Log`

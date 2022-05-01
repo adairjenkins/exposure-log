@@ -5,6 +5,7 @@ import { Box, Typography, Stack, InputLabel, TextField, Button } from '@mui/mate
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -16,6 +17,7 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        firstName: firstName
       },
     });
   }; // end registerUser
@@ -29,6 +31,17 @@ function RegisterForm() {
             {errors.registrationMessage}
           </h3>
         )}
+        <Stack direction="row" sx={{ mt: 3 }}>
+          <InputLabel htmlFor="firstName" sx={{ paddingTop: 1, marginRight: 1, fontSize: 18 }}>First Name:</InputLabel>
+          <TextField
+            size="small"
+            type="text"
+            name="firstName"
+            value={firstName}
+            required
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </Stack>
         <Stack direction="row" sx={{ mt: 3 }}>
           <InputLabel htmlFor="username" sx={{ paddingTop: 1, marginRight: 2, fontSize: 18 }}>Username:</InputLabel>
           <TextField

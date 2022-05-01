@@ -25,6 +25,22 @@ import TopBar from '../TopBar/TopBar';
 import ExposureForm from '../Exposure/ExposureForm';
 import Home from '../HomeView/Home';
 import './App.css';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#266CCF',
+    },
+    secondary: {
+      main: '#CAB3A8',
+    },
+    background: {
+      default: '#F2F6F7',
+      //paper: '#FFFFF',
+    },
+  },
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +53,8 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <ThemeProvider theme={theme}>
+        < CssBaseline/>
         < Route path="/:url">
           < TopBar />
         </Route>
@@ -125,8 +142,8 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <BottomBar/>
-      </div>
+        <BottomBar />
+      </ThemeProvider>
     </Router>
   );
 }

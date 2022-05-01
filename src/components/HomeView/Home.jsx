@@ -59,25 +59,26 @@ function Home() {
     const pyramidConfig = {
         type: 'cone',
         legend_visible: false,
-        defaultSeries: {
-            /*Gaps between cone section.*/
-            shape_innerPadding: 6,
-            defaultPoint: {
-                label: {
-                    // text:
-                    //     `name goes here`,
-                    placement: 'inside',
-                    color: '0000'
-                }
-            }
-        },
+        // defaultSeries: {
+        //     /*Gaps between cone section.*/
+        //     shape_innerPadding: 6,
+        //     defaultPoint: {
+        //         label: {
+        //             // text:
+        //             //     `name goes here`,
+        //             placement: 'inside',
+        //             color: '0000'
+        //         }
+        //     }
+        // },
         series: [
             {
-                name: 'Costs',
+                name: 'Hierarchy',
                 palette: 'default',
+                shape_innerPadding: 6,
                 points: [
                     { label: { text: 'remaining' }, name: 'remaining', y: (10 - progression) / 10 },
-                    { label: { text: 'completed', font: { size: 15 } }, name: 'completed', y: progression / 10 },
+                    { label: { text: 'completed', font: { size: 20 } }, name: 'completed', y: progression / 10 },
                 ]
             }
         ]
@@ -101,7 +102,7 @@ function Home() {
     );
     // line graph options
     const options = {
-        aspectRatio: 1,
+        aspectRatio: .8,
         tension: .4,
         scales: {
             y: {
@@ -152,28 +153,28 @@ function Home() {
     const data = {
         labels,
         datasets: graphExposures.map((exposure, i) => (
-                        {
-                            label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
-                            data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
-                            borderColor: `rgba(${100}, ${0}, ${255 * (i + 1)/graphExposures.length}, 1)`,
-                            backgroundColor: 'rgba(255, 99, 132, 0)',
-                            borderWidth: 6
-                        }
-                        ))
-            // {
-            //     label: 'Average',
-            //     data: [Math.round(average.pre), Math.round(average.peak), Math.round(average.post)],
-            //     borderColor: 'rgba(255, 67, 172, 0.5)',
-            //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            //     borderWidth: 6
-            // }, 
-            //  {
-            //     label: 'Average',
-            //     data: [50, Math.round(average.peak), Math.round(average.post)],
-            //     borderColor: 'primary',
-            //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            //     borderWidth: 6
-            // }
+            {
+                label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
+                data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
+                borderColor: `rgba(${29}, ${93 * (i + 1) / graphExposures.length}, ${149}, .8)`,
+                backgroundColor: 'rgba(255, 99, 132, 0)',
+                borderWidth: 6
+            }
+        ))
+        // {
+        //     label: 'Average',
+        //     data: [Math.round(average.pre), Math.round(average.peak), Math.round(average.post)],
+        //     borderColor: 'rgba(255, 67, 172, 0.5)',
+        //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        //     borderWidth: 6
+        // }, 
+        //  {
+        //     label: 'Average',
+        //     data: [50, Math.round(average.peak), Math.round(average.post)],
+        //     borderColor: 'primary',
+        //     backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        //     borderWidth: 6
+        // }
         ,
     };
     console.log('line graph data.dataset', data.datasets)
@@ -182,9 +183,9 @@ function Home() {
 
     return (
         <Box sx={{ marginBottom: 10 }}>
-            <Stack spacing={4} direction="row" sx={{ marginLeft: 3, marginTop: 4 }}>
+            <Stack spacing={4} justifyContent="center" direction="row" sx={{marginTop: 4, mb:5 }}>
                 <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
-                    <Typography variant="h6">
+                    <Typography variant="h5" align="center" sx={{mb:1}}>
                         Daily Goal
                     </Typography>
                     <ProgressCircle
@@ -194,7 +195,7 @@ function Home() {
                     />
                 </Box>
                 <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
-                    <Typography variant="h6">
+                    <Typography variant="h5" align="center" sx={{mb:1}}>
                         Weekly Goal
                     </Typography>
                     <ProgressCircle
@@ -204,17 +205,17 @@ function Home() {
                     />
                 </Box>
             </Stack>
-            <Box sx={{ width: '90%', maxWidth: 500, marginLeft: 2, marginTop: 5 }}>
+            {/* <Box sx={{ width: '90%', maxWidth: 500, marginLeft: 2, marginTop: 5 }}>
                 <Typography variant="h6">
                     Hierarchy Progression
                 </Typography>
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
-            </Box>
-            <Box sx={{ width: '90%', maxWidth: 500, marginBottom: 10, marginLeft: 2 }}>
-                <Typography variant="h6">
+            </Box> */}
+            <Box >
+                <Typography variant="h5" align="center">
                     Exposure Distress Levels
                 </Typography>
-                <FormControl sx={{ maxWidth: 600, width: "100%" }}>
+                <FormControl sx={{ maxWidth: 600, width: "90%" }}>
                     <InputLabel>Situation</InputLabel>
                     <Select
                         value={graphId}
@@ -227,7 +228,9 @@ function Home() {
                         ))}
                     </Select>
                 </FormControl>
-                <Line options={options} data={data} />
+                <Box sx={{maxWidth:400, width:"90%"}}>
+                    <Line options={options} data={data} />
+                </Box>
             </Box>
         </Box >
     )
