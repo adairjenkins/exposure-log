@@ -40,6 +40,7 @@ function HierarchyForm() {
                         <InputLabel>Rating</InputLabel>
                         <Select
                             value={formValues.rating}
+                            label="Rating"
                             onChange={(event) => setFormValues({...formValues, rating: event.target.value})}
                         >
                             <MenuItem key={1} value={1}>{1}</MenuItem>

@@ -78,6 +78,7 @@ function ExposureForm({ isEdit }) {
             <form onSubmit={isEdit ? submitEdit : submitNewForm} >
                 <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
                     <TextField
+                        required
                         variant="outlined"
                         color="secondary"
                         type="date"
@@ -86,6 +87,7 @@ function ExposureForm({ isEdit }) {
                         onChange={(event) => setFormValues({ ...formValues, date: event.target.value })}
                     />
                     <TextField
+                        required
                         variant="outlined"
                         color="secondary"
                         type="time"
@@ -95,7 +97,7 @@ function ExposureForm({ isEdit }) {
                     />
                 </Stack>
                 <Stack sx={{ marginTop: 2 }} spacing={2}>
-                    <FormControl sx={{ maxWidth: 600, width: "100%" }}>
+                    <FormControl sx={{ maxWidth: 600, width: "100%" }} required>
                         <InputLabel>Situation</InputLabel>
                         <Select
                             label="Situation"
@@ -111,6 +113,7 @@ function ExposureForm({ isEdit }) {
 
                     <TextField
                         sx={{ width: 150 }}
+                        required
                         variant="outlined"
                         color="secondary"
                         type="number"
@@ -118,7 +121,7 @@ function ExposureForm({ isEdit }) {
                         value={formValues.duration}
                         onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
                     />
-                    <FormControl sx={{ maxWidth: 600, width: "97%" }}>
+                    <FormControl sx={{ maxWidth: 600, width: "97%" }} required>
                         <Box sx={{ ml: 1 }}>
                             <FormLabel sx={{ mt: 2 }}>Pre Distress</FormLabel>
                             <Slider
@@ -178,14 +181,14 @@ function ExposureForm({ isEdit }) {
                 <br />
                 {isEdit ?
                     <Stack direction="row" justifyContent="space-around">
-                        <Button type="submit" sx={{fontSize:17}}>SAVE</Button>
-                        <Button sx={{fontSize:17}} onClick={() => { history.push('/history') }}>CANCEL</Button>
-                        <Button sx={{fontSize:17}} onClick={() => deleteExposure(form.id)}>DELETE</Button>
+                        <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
+                        <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/history') }}>CANCEL</Button>
+                        <Button sx={{ fontSize: 17 }} onClick={() => deleteExposure(form.id)}>DELETE</Button>
                     </Stack>
                     :
                     <>
-                        <Button type="submit" sx={{fontSize:17}}>SAVE</Button>
-                        <Button sx={{fontSize:17}} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
+                        <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
+                        <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
                     </>
                 }
             </form>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, PureComponent, useState } from 'react';
-import { Typography, Card, Box, FormHelperText, Stack, FormControl, MenuItem, InputLabel, Select } from '@mui/material';
+import { Typography, Container, Card, Box, FormHelperText, Stack, FormControl, MenuItem, InputLabel, Select } from '@mui/material';
 import { Star } from '@mui/icons-material';
 import moment from 'moment';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -182,8 +182,9 @@ function Home() {
 
 
     return (
-        <Box sx={{ marginBottom: 10 }}>
-            <Stack spacing={4} justifyContent="center" direction="row" sx={{marginTop: 4, mb:5 }}>
+        <Container sx={{ marginBottom: 10 }}>
+            <Stack spacing={2}>
+            <Stack spacing={6} justifyContent="center" direction="row" sx={{marginTop: 4, mb:4 }}>
                 <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
                     <Typography variant="h5" align="center" sx={{mb:1}}>
                         Daily Goal
@@ -211,11 +212,11 @@ function Home() {
                 </Typography>
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
             </Box> */}
-            <Box >
+ 
                 <Typography variant="h5" align="center">
                     Exposure Distress Levels
                 </Typography>
-                <FormControl sx={{ maxWidth: 600, width: "90%" }}>
+                <FormControl sx={{ width:"100%", maxWidth:500 }}>
                     <InputLabel>Situation</InputLabel>
                     <Select
                         value={graphId}
@@ -228,11 +229,11 @@ function Home() {
                         ))}
                     </Select>
                 </FormControl>
-                <Box sx={{maxWidth:400, width:"90%"}}>
+                <Box sx={{maxWidth:500}}>
                     <Line options={options} data={data} />
                 </Box>
-            </Box>
-        </Box >
+                </Stack>
+        </Container >
     )
 }
 
