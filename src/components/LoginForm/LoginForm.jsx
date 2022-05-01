@@ -22,6 +22,7 @@ function LoginForm() {
           password: password,
         },
       });
+      dispatch({ type: 'GET_EXPOSURE'});
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

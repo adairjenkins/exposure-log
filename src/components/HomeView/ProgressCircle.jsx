@@ -11,7 +11,7 @@ function ProgressCircle({ percentage, count, goal }) {
                 strokeWidth={8}
                 styles={buildStyles({
                     pathColor: `#247ebf`,
-                    textColor: '#FFD670',
+                    textColor: '#F6B069',
                     backgroundColor: '#FF5733',
                     textSize: '40'
                 })}
@@ -23,7 +23,7 @@ function ProgressCircle({ percentage, count, goal }) {
                 strokeWidth={8}
                 styles={buildStyles({
                     pathColor: '#247ebf',
-                    textColor: '#DA3E52',
+                    textColor: 'black',
                     backgroundColor: '#FF5733',
                     textSize: '16'
                 })}
