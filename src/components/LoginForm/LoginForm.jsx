@@ -28,6 +28,12 @@ function LoginForm() {
     history.push('/home');
   }; // end login
 
+  const secretButtonLogin = () => {
+    console.log('secret button');
+    setUsername('adairjenkins');
+    setPassword('1234');
+  }
+
   return (
     <Box sx={{ margin: 3 }}>
       <form className="formPanel" onSubmit={login}>
@@ -38,7 +44,7 @@ function LoginForm() {
           </h3>
         )}
         <Stack direction="row" sx={{ mt: 3 }}>
-          <InputLabel htmlFor="username" sx={{paddingTop:1, marginRight:2, fontSize:18}}>Username:</InputLabel>
+          <InputLabel htmlFor="username" sx={{paddingTop:1, marginRight:2, fontSize:18}} onClick={secretButtonLogin}>Username:</InputLabel>
             <TextField
               type="text"
               name="username"

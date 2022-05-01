@@ -33,13 +33,14 @@ function HierarchyForm() {
                         label="Add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
-                        sx={{minWidth: 320, margin:2}}
+                        sx={{minWidth: 320, marginTop:2, marginLeft:2, marginRight:2}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
-                    <FormControl required sx={{minWidth: 110, margin:2, marginTop:0, marginBottom:0}}>
+                    <FormControl required sx={{minWidth: 110, margin:2, marginTop:2, marginBottom:0}}>
                         <InputLabel>Rating</InputLabel>
                         <Select
                             value={formValues.rating}
+                            label="Rating"
                             onChange={(event) => setFormValues({...formValues, rating: event.target.value})}
                         >
                             <MenuItem key={1} value={1}>{1}</MenuItem>
@@ -54,7 +55,7 @@ function HierarchyForm() {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                <IconButton type="submit">
+                <IconButton type="submit" sx={{ml:1}} >
                     <Add/>
                 </IconButton>
             </Grid>
