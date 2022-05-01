@@ -30,13 +30,13 @@ import { createTheme, ThemeProvider, CssBaseline } from '@mui/material'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#266CCF',
+      main: '#247ebf',
     },
     secondary: {
-      main: '#CAB3A8',
+      main: '#98A991',
     },
     background: {
-      default: '#F2F6F7',
+      default: '',
       //paper: '#FFFFF',
     },
   },

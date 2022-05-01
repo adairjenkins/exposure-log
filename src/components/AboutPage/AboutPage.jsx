@@ -8,7 +8,7 @@ import { Box, Typography } from '@mui/material';
 
 function AboutPage() {
   return (
-    <Box sx={{margin:3, marginTop:10, marginBottom:15}}>
+    <Box sx={{margin:3, marginTop:12, marginBottom:15}}>
       <Typography variant="h6">
         About This App
       </Typography>

@@ -25,9 +25,9 @@ function Home() {
         dispatch({ type: 'GET_GOAL' });
         dispatch({ type: 'GET_COUNT' });
         dispatch({ type: 'GET_AVERAGE' });
-        dispatch({ type: 'GET_PROGRESSION' })
-        dispatch({ type: 'GET_HIERARCHY' })
-        dispatch({ type: 'GET_EXPOSURE' })
+        dispatch({ type: 'GET_PROGRESSION' });
+        dispatch({ type: 'GET_HIERARCHY' });
+        dispatch({ type: 'GET_EXPOSURE' });
     }, []);
 
     const goal = useSelector(store => store.goal);
@@ -55,7 +55,6 @@ function Home() {
 
     let dailyPercentage = 100 * (count.daily / goal.daily);
     let weeklyPercentage = 100 * (count.weekly / goal.weekly);
-
 
     const pyramidConfig = {
         type: 'cone',
@@ -157,7 +156,11 @@ function Home() {
             {
                 label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
                 data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
-                borderColor: `rgba(${29}, ${93 * (i + 1) / graphExposures.length}, ${149}, .8)`,
+                //calculates gradation between two colors
+                borderColor: `rgba( ${ ((218-36) * (i / (graphExposures.length-1)) + 36) }, 
+                                    ${ ((62-126) * (i / (graphExposures.length-1)) + 126) },
+                                    ${ ((82-191) * (i / (graphExposures.length-1)) + 191) },   
+                                1)`,
                 backgroundColor: 'rgba(255, 99, 132, 0)',
                 borderWidth: 4
             }
