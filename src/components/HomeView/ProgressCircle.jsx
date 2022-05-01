@@ -8,7 +8,7 @@ function ProgressCircle({ percentage, count, goal }) {
             <CircularProgressbar
                 value={percentage}
                 text='&#9733;'
-                strokeWidth={10}
+                strokeWidth={8}
                 styles={buildStyles({
                     pathColor: `#1097AC`,
                     textColor: '#EFAA3C',
@@ -20,12 +20,12 @@ function ProgressCircle({ percentage, count, goal }) {
             <CircularProgressbar
                 value={percentage}
                 text={`${count} of ${goal}`}
-                strokeWidth={10}
+                strokeWidth={8}
                 styles={buildStyles({
                     pathColor: '#1097AC',
                     textColor: '#FF5733',
                     backgroundColor: '#FF5733',
-                    textSize: '18'
+                    textSize: '16'
                 })}
             />
         }

@@ -27,7 +27,7 @@ function History() {
             {exposureList.map(exposure => (
                 <Paper key={exposure.id} variant="outlined" sx={{padding:.8}}>
                     <Stack direction="row" justifyContent="space-between">
-                    <Typography>
+                    <Typography sx={{ fontWeight:500}}>
                         RATING: {exposure.rating}
                     </Typography>
                     <Typography sx={{ fontSize: 13 }}>
@@ -38,14 +38,14 @@ function History() {
                         {exposure.description}
                     </Typography>
                     <Stack direction="row" justifyContent="space-between">
-                        <Stack direction="row" justifyContent="space-between" sx={{ width: "60%", mt:1 }}>
-                            <Typography display="inline">
+                        <Stack direction="row" justifyContent="space-between" sx={{ width: "60%", mt:1}}>
+                            <Typography display="inline" sx={{ fontWeight:500}}>
                                 pre: {exposure.pre_suds}
                             </Typography>
-                            <Typography display="inline">
+                            <Typography display="inline" sx={{ fontWeight:500}}>
                                 peak: {exposure.peak_suds}
                             </Typography>
-                            <Typography display="inline">
+                            <Typography display="inline" sx={{ fontWeight:500}}>
                                 post: {exposure.post_suds}
                             </Typography>
                         </Stack>

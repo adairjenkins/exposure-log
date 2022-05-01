@@ -43,8 +43,9 @@ function Home() {
     const exposureList = useSelector(store => store.exposure);
     console.log('exposureList:', exposureList);
 
-    //holds id of selected hierarchy situation
-    const [graphId, setGraphId] = useState('');
+    //holds id of selected hierarchy situation, default value is most recent exposure
+    const [graphId, setGraphId] = useState(exposureList[0] ? exposureList[0].hierarchy_id : '');
+    console.log('graphId:', graphId)
     //filter exposureList for hierarchy_id matching selected hierarchy id
     const graphExposures = exposureList.filter(exposure => {
         return exposure.hierarchy_id == graphId
@@ -102,7 +103,7 @@ function Home() {
     );
     // line graph options
     const options = {
-        aspectRatio: .8,
+        aspectRatio: 1.1,
         tension: .4,
         scales: {
             y: {
@@ -140,7 +141,7 @@ function Home() {
         responsive: true,
         plugins: {
             legend: {
-                display: true
+                display: false
             },
             title: {
                 display: false,
@@ -158,7 +159,7 @@ function Home() {
                 data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
                 borderColor: `rgba(${29}, ${93 * (i + 1) / graphExposures.length}, ${149}, .8)`,
                 backgroundColor: 'rgba(255, 99, 132, 0)',
-                borderWidth: 6
+                borderWidth: 4
             }
         ))
         // {
@@ -179,11 +180,9 @@ function Home() {
     };
     console.log('line graph data.dataset', data.datasets)
 
-
-
     return (
         <Container sx={{ marginBottom: 10 }}>
-            <Stack spacing={2}>
+            <Stack spacing={3}>
             <Stack spacing={6} justifyContent="center" direction="row" sx={{marginTop: 4, mb:4 }}>
                 <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
                     <Typography variant="h5" align="center" sx={{mb:1}}>
@@ -221,7 +220,7 @@ function Home() {
                     <Select
                         value={graphId}
                         label="Situation"
-                        // defaultValue={formValues.hierarchy_id}
+                        defaultValue={exposureList[0] ? exposureList[0].hierarchy_id : ''}
                         onChange={(event) => setGraphId(event.target.value)}
                     >
                         {hierarchyList.map(situation => (

@@ -73,8 +73,18 @@ function ExposureForm({ isEdit }) {
         history.push('/history');
     }
 
+    const secretButtonDateTime = () => {
+        console.log('secret button');
+        setFormValues({ ...formValues, time: '11:00', date: '2022-05-02' });
+    }
+
+    const secretButtonDuration = () => {
+        console.log('secret button');
+        setFormValues({ ...formValues, duration: '20' });
+    }
+
     return (
-        <Box maxWidth="md" sx={{ margin: 3 }}>
+        <Box maxWidth="md" sx={{ margin: 3, mb: 10 }}>
             <form onSubmit={isEdit ? submitEdit : submitNewForm} >
                 <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
                     <TextField
@@ -95,6 +105,7 @@ function ExposureForm({ isEdit }) {
                         value={formValues.time}
                         onChange={(event) => setFormValues({ ...formValues, time: event.target.value })}
                     />
+                    <Box sx={{ width: 10, height:50}} onClick={secretButtonDateTime}></Box>
                 </Stack>
                 <Stack sx={{ marginTop: 2 }} spacing={2}>
                     <FormControl sx={{ maxWidth: 600, width: "100%" }} required>
@@ -110,17 +121,19 @@ function ExposureForm({ isEdit }) {
                             ))}
                         </Select>
                     </FormControl>
-
-                    <TextField
-                        sx={{ width: 150 }}
-                        required
-                        variant="outlined"
-                        color="secondary"
-                        type="number"
-                        label="Duration (min)"
-                        value={formValues.duration}
-                        onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
-                    />
+                    <Stack direction="row">
+                        <TextField
+                            sx={{ width: 150 }}
+                            required
+                            variant="outlined"
+                            color="secondary"
+                            type="number"
+                            label="Duration (min)"
+                            value={formValues.duration}
+                            onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
+                        />
+                        <Box sx={{ width: 50, height: 50}} onClick={secretButtonDuration}></Box>
+                    </Stack>
                     <FormControl sx={{ maxWidth: 600, width: "97%" }} required>
                         <Box sx={{ ml: 1 }}>
                             <FormLabel sx={{ mt: 2 }}>Pre Distress</FormLabel>
@@ -186,10 +199,10 @@ function ExposureForm({ isEdit }) {
                         <Button sx={{ fontSize: 17 }} onClick={() => deleteExposure(form.id)}>DELETE</Button>
                     </Stack>
                     :
-                    <>
+                    <Stack direction="row" spacing={3}>
                         <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
                         <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
-                    </>
+                    </Stack>
                 }
             </form>
         </Box>

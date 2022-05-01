@@ -76,8 +76,8 @@ function Situation({ situation }) {
                         </Typography>
                     </Box>
                     <Stack direction="row" justifyContent="space-between">
-                        <Typography sx={{ fontSize: 14 }}>
-                            rating: {situation.rating}
+                        <Typography sx={{ fontSize: 14, fontWeight:500 }}>
+                            RATING: {situation.rating}
                         </Typography>
                         <IconButton onClick={() => setEditing(true)}>
                             <MoreHoriz />
