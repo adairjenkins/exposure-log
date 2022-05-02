@@ -26,7 +26,7 @@ function AboutPage() {
       should be a  scenario the individual can repeat. The goal is also to include situations that 
       cause a range of distress levels. The individual begins with the lowest ranking  scenario and 
       repeatedly exposes themselves to the situation while also tracking their pre, peak, and post level of distress. Tracking distress levels provides feedback about the individual’s 
-      habitation to the situation, as well as indicates when it’s appropriate to move up to the next 
+      habituation to the situation, as well as indicates when it’s appropriate to move up to the next 
       scenario in the hierarchy.
       </Typography>
       <Typography sx={{mt:1, fontSize:12}}>

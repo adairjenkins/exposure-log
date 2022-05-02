@@ -25,7 +25,7 @@ import TopBar from '../TopBar/TopBar';
 import ExposureForm from '../Exposure/ExposureForm';
 import Home from '../HomeView/Home';
 import './App.css';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material'
+import { createTheme, ThemeProvider, CssBaseline, Box } from '@mui/material'
 
 const theme = createTheme({
   palette: {
@@ -58,7 +58,6 @@ function App() {
         < Route path="/:url">
           < TopBar />
         </Route>
-        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -128,10 +127,6 @@ function App() {
           <ProtectedRoute exact path="/hierarchy">
             < Hierarchy />
           </ProtectedRoute>
-
-          {/* <ProtectedRoute exact path="edit/hierarchy/:id">
-            < EditHierarchy/>
-          </ProtectedRoute> */}
 
           <ProtectedRoute exact path="/history">
             < History />

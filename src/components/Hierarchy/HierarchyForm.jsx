@@ -33,7 +33,7 @@ function HierarchyForm() {
                         label="Add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
-                        sx={{minWidth: 320, marginTop:2, marginLeft:2, marginRight:2}}
+                        sx={{minWidth: 375, marginTop:2, marginLeft:2, marginRight:2}}
                         onChange={(event) => setFormValues({...formValues, description: event.target.value})}
                     />
                     <FormControl required sx={{minWidth: 110, margin:2, marginTop:2, marginBottom:0}}>
