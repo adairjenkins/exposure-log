@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Stack, TableCell, Table, TableHead, TableRow, TableBody, Grid, Paper, Typography, Box, TextField, FormControl, MenuItem, Select, InputLabel, TableContainer } from '@mui/material';
 import { Add, DeleteOutlined, EditOutlined, MoreHoriz } from '@mui/icons-material';
 import Situation from './Situation';
-import EditSituation from './EditSituation';
 
 function HierarchyList() {
     const dispatch = useDispatch();
@@ -21,7 +20,7 @@ function HierarchyList() {
 
     return (
         <>
-            <Stack spacing={1.5} sx={{ width: "90%", marginBottom: "70px", marginTop: "20px", marginLeft: 2 }}>
+            <Stack spacing={1.5} sx={{ width: "90%", maxWidth:700, marginBottom: "70px", marginTop: "20px" }}>
                 {hierarchyList.map(situation => (
                     exposureList.some(exposure => exposure.hierarchy_id == situation.id) ?
                         <>
