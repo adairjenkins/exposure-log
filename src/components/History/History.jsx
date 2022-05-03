@@ -22,10 +22,9 @@ function History() {
     }
 
     return (
-
-        <Stack spacing={1.5} sx={{ width: "90%", maxWidth:700, marginBottom: "70px", marginTop: "20px", marginLeft: 2 }}>
+        <Stack spacing={1.5} sx={{ maxWidth:600, marginBottom: "70px", marginTop: "20px"}}>
             {exposureList.map(exposure => (
-                <Paper key={exposure.id} variant="outlined" sx={{padding:.8}}>
+                <Paper key={exposure.id} variant="outlined" sx={{padding:1}}>
                     <Stack direction="row" justifyContent="space-between">
                     <Typography sx={{ fontWeight:500}}>
                         RATING: {exposure.rating}

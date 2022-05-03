@@ -22,15 +22,15 @@ function LoginForm() {
           password: password,
         },
       });
-      dispatch({ type: 'GET_EXPOSURE'});
+      dispatch({ type: 'GET_EXPOSURE' });
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
     history.push('/home');
   }; // end login
 
-  const secretButtonLogin = () => {
-    console.log('secret button');
+  const demoAccountLogin = (event) => {
+    console.log('demo account');
     setUsername('adairjenkins');
     setPassword('1234');
   }
@@ -45,19 +45,19 @@ function LoginForm() {
           </h3>
         )}
         <Stack direction="row" sx={{ mt: 3 }}>
-          <InputLabel htmlFor="username" sx={{paddingTop:1, marginRight:2, fontSize:18}} onClick={secretButtonLogin}>Username:</InputLabel>
-            <TextField
-              type="text"
-              name="username"
-              size="small"
-              variant="outlined"
-              required
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
+          <InputLabel htmlFor="username" sx={{ paddingTop: 1, marginRight: 2, fontSize: 18 }}>Username:</InputLabel>
+          <TextField
+            type="text"
+            name="username"
+            size="small"
+            variant="outlined"
+            required
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </Stack>
         <Stack direction="row" sx={{ mt: 2 }}>
-          <InputLabel htmlFor="password" sx={{paddingTop:1, marginRight:2, fontSize:18}}>Password:</InputLabel>
+          <InputLabel htmlFor="password" sx={{ paddingTop: 1, marginRight: 2, fontSize: 18 }}>Password:</InputLabel>
           <TextField
             size="small"
             variant="outlined"
@@ -69,9 +69,11 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </Stack>
-          <Box sx={{display: 'flex', justifyContent: 'flex-end', marginRight:3 }}>
-        <Button variant="contained" type="submit" sx={{ mt: 3}}>SUBMIT</Button>
-        </Box>
+        <Stack direction="row" justifyContent="space-around" sx={{ ml:2, mt: 5, maxWidth:300}}>
+          <Button variant="contained" sx={{height:40}} onClick={demoAccountLogin}>Demo Account</Button>
+          <Button variant="contained" type="submit">SUBMIT</Button>
+
+        </Stack>
         {/* <div>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div> */}
