@@ -85,132 +85,134 @@ function ExposureForm({ isEdit }) {
 
     const secretButtonDistress = () => {
         console.log('secret button');
-        setFormValues({...formValues, pre_suds: 30, peak_suds: 40, post_suds: 20 });
+        setFormValues({ ...formValues, pre_suds: 30, peak_suds: 40, post_suds: 20 });
     }
 
     return (
-        <Box maxWidth="md" sx={{ margin: 3, mb: 10 }} >
-            <form onSubmit={isEdit ? submitEdit : submitNewForm} >
-                <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
-                    <TextField
-                        required
-                        variant="outlined"
-                        color="secondary"
-                        type="date"
-                        // label="DATE"
-                        value={formValues.date}
-                        onChange={(event) => setFormValues({ ...formValues, date: event.target.value })}
-                    />
-                    <TextField
-                        required
-                        variant="outlined"
-                        color="secondary"
-                        type="time"
-                        // label="time"
-                        value={formValues.time}
-                        onChange={(event) => setFormValues({ ...formValues, time: event.target.value })}
-                    />
-                    <Box sx={{ width: 10, height:50}} onClick={secretButtonDateTime}></Box>
-                </Stack>
-                <Stack sx={{ marginTop: 2 }} spacing={2}>
-                    <FormControl sx={{ maxWidth: 600, width: "100%" }} required>
-                        <InputLabel>Situation</InputLabel>
-                        <Select
-                            label="Situation"
-                            value={formValues.hierarchy_id}
-                            defaultValue={formValues.hierarchy_id}
-                            onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}
-                        >
-                            {hierarchyList.map(situation => (
-                                <MenuItem key={situation.id} value={situation.id}>{situation.rating}. {situation.description}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <Stack direction="row">
+        <Stack alignItems="center">
+            <Box sx={{ width:"90%", mb: 10 }} >
+                <form onSubmit={isEdit ? submitEdit : submitNewForm} >
+                    <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
                         <TextField
-                            sx={{ width: 150 }}
                             required
                             variant="outlined"
                             color="secondary"
-                            type="number"
-                            label="Duration (min)"
-                            value={formValues.duration}
-                            onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
+                            type="date"
+                            // label="DATE"
+                            value={formValues.date}
+                            onChange={(event) => setFormValues({ ...formValues, date: event.target.value })}
                         />
-                        <Box sx={{ width: 50, height: 50}} onClick={secretButtonDuration}></Box>
+                        <TextField
+                            required
+                            variant="outlined"
+                            color="secondary"
+                            type="time"
+                            // label="time"
+                            value={formValues.time}
+                            onChange={(event) => setFormValues({ ...formValues, time: event.target.value })}
+                        />
+                        <Box sx={{ width: 10, height: 50 }} onClick={secretButtonDateTime}></Box>
                     </Stack>
-                    <FormControl sx={{ maxWidth: 600, width: "97%" }} required>
-                        <Box sx={{ ml: 1 }}>
-                            <FormLabel sx={{ mt: 2 }} onClick={secretButtonDistress}>Pre Distress</FormLabel>
-                            <Slider
-                                valueLabelDisplay="auto"
-                                defaultValue={0}
-                                step={5}
-                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                                min={0}
-                                max={100}
-                                value={formValues.pre_suds}
-                                onChange={(event) => setFormValues({ ...formValues, pre_suds: event.target.value })}
+                    <Stack sx={{ marginTop: 2 }} spacing={2}>
+                        <FormControl sx={{ maxWidth: 600, width: "100%" }} required>
+                            <InputLabel>Situation</InputLabel>
+                            <Select
+                                label="Situation"
+                                value={formValues.hierarchy_id}
+                                defaultValue={formValues.hierarchy_id}
+                                onChange={(event) => setFormValues({ ...formValues, hierarchy_id: event.target.value })}
+                            >
+                                {hierarchyList.map(situation => (
+                                    <MenuItem key={situation.id} value={situation.id}>{situation.rating}. {situation.description}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <Stack direction="row">
+                            <TextField
+                                sx={{ width: 150 }}
+                                required
+                                variant="outlined"
+                                color="secondary"
+                                type="number"
+                                label="Duration (min)"
+                                value={formValues.duration}
+                                onChange={(event) => setFormValues({ ...formValues, duration: event.target.value })}
                             />
-                        </Box>
-                        <Box sx={{ ml: 1 }}>
-                            <FormLabel>Peak distress</FormLabel>
-                            <Slider
-                                valueLabelDisplay="auto"
-                                defaultValue={0}
-                                step={5}
-                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                                min={0}
-                                max={100}
-                                value={formValues.peak_suds}
-                                onChange={(event) => setFormValues({ ...formValues, peak_suds: event.target.value })}
-                            />
-                        </Box>
-                        <Box sx={{ ml: 1 }}>
-                            <FormLabel>Post Distress</FormLabel>
-                            <Slider
-                                valueLabelDisplay="auto"
-                                defaultValue={0}
-                                step={5}
-                                marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
-                                { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
-                                min={0}
-                                max={100}
-                                value={formValues.post_suds}
-                                onChange={(event) => setFormValues({ ...formValues, post_suds: event.target.value })}
-                            />
-                        </Box>
-                    </FormControl>
+                            <Box sx={{ width: 50, height: 50 }} onClick={secretButtonDuration}></Box>
+                        </Stack>
+                        <FormControl sx={{ maxWidth: 600, width: "97%" }} required>
+                            <Box sx={{ ml: 1 }}>
+                                <FormLabel sx={{ mt: 2 }} onClick={secretButtonDistress}>Pre Distress</FormLabel>
+                                <Slider
+                                    valueLabelDisplay="auto"
+                                    defaultValue={0}
+                                    step={5}
+                                    marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                    { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                    min={0}
+                                    max={100}
+                                    value={formValues.pre_suds}
+                                    onChange={(event) => setFormValues({ ...formValues, pre_suds: event.target.value })}
+                                />
+                            </Box>
+                            <Box sx={{ ml: 1 }}>
+                                <FormLabel>Peak distress</FormLabel>
+                                <Slider
+                                    valueLabelDisplay="auto"
+                                    defaultValue={0}
+                                    step={5}
+                                    marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                    { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                    min={0}
+                                    max={100}
+                                    value={formValues.peak_suds}
+                                    onChange={(event) => setFormValues({ ...formValues, peak_suds: event.target.value })}
+                                />
+                            </Box>
+                            <Box sx={{ ml: 1 }}>
+                                <FormLabel>Post Distress</FormLabel>
+                                <Slider
+                                    valueLabelDisplay="auto"
+                                    defaultValue={0}
+                                    step={5}
+                                    marks={[{ value: 0, label: 0 }, { value: 10, label: 10 }, { value: 20, label: 20 }, { value: 30, label: 30 }, { value: 40, label: 40 },
+                                    { value: 50, label: 50 }, { value: 60, label: 60 }, { value: 70, label: 70 }, { value: 80, label: 80 }, { value: 90, label: 90 }, { value: 100, label: 100 }]}
+                                    min={0}
+                                    max={100}
+                                    value={formValues.post_suds}
+                                    onChange={(event) => setFormValues({ ...formValues, post_suds: event.target.value })}
+                                />
+                            </Box>
+                        </FormControl>
 
-                    <TextField
-                        variant="outlined"
-                        multiline={true}
-                        rows="4"
-                        color="primary"
-                        label="Notes"
-                        name="notes"
-                        sx={{ width: "100%", maxWidth: 600 }}
-                        value={formValues.notes}
-                        onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
-                    />
-                </Stack>
-                <br />
-                {isEdit ?
-                    <Stack direction="row" justifyContent="space-around">
-                        <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
-                        <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/history') }}>CANCEL</Button>
-                        <Button sx={{ fontSize: 17 }} onClick={() => deleteExposure(form.id)}>DELETE</Button>
+                        <TextField
+                            variant="outlined"
+                            multiline={true}
+                            rows="4"
+                            color="primary"
+                            label="Notes"
+                            name="notes"
+                            sx={{ width: "100%", maxWidth: 600 }}
+                            value={formValues.notes}
+                            onChange={(event) => setFormValues({ ...formValues, notes: event.target.value })}
+                        />
                     </Stack>
-                    :
-                    <Stack direction="row" spacing={3}>
-                        <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
-                        <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
-                    </Stack>
-                }
-            </form>
-        </Box>
+                    <br />
+                    {isEdit ?
+                        <Stack direction="row" justifyContent="space-around">
+                            <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
+                            <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/history') }}>CANCEL</Button>
+                            <Button sx={{ fontSize: 17 }} onClick={() => deleteExposure(form.id)}>DELETE</Button>
+                        </Stack>
+                        :
+                        <Stack direction="row" spacing={3}>
+                            <Button type="submit" sx={{ fontSize: 17 }}>SAVE</Button>
+                            <Button sx={{ fontSize: 17 }} onClick={() => { history.push('/hierarchy') }}>CANCEL</Button>
+                        </Stack>
+                    }
+                </form>
+            </Box>
+        </Stack>
     )
 }
 
