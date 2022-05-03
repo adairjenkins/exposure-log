@@ -89,7 +89,7 @@ function ExposureForm({ isEdit }) {
     }
 
     return (
-        <Box maxWidth="md" sx={{ margin: 3, mb: 10 }}>
+        <Box maxWidth="md" sx={{ margin: 3, mb: 10 }} >
             <form onSubmit={isEdit ? submitEdit : submitNewForm} >
                 <Stack sx={{ marginTop: 2 }} direction="row" spacing={2}>
                     <TextField
