@@ -28,19 +28,19 @@ function HierarchyForm() {
 
     return (
         <form onSubmit={submitHierarchyForm}>
-            <Grid container spacing={2} >
-                <Grid item xs={12} md={6}>
+            <Grid container spacing={2} justifyContent="flex-start" sx={{mt:1, mb:1, ml:1}}>
+                <Grid item xs={12} sm={8} >
                     <TextField
                         required
                         label="Add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
                         onChange={(event) => setFormValues({ ...formValues, description: event.target.value })}
-                        sx={{minWidth:350}}
+                        sx={{ minWidth:350}}
                     />
                 </Grid>
-                <Grid item xs={6} md={4}>
-                    <FormControl required sx={{ minWidth: 110}}>
+                <Grid item xs={2} sm={2}>
+                    <FormControl required sx={{ minWidth:100}}>
                         <InputLabel>Rating</InputLabel>
                         <Select
                             value={formValues.rating}
@@ -60,8 +60,8 @@ function HierarchyForm() {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={6} md={2}>
-                    <IconButton type="submit" sx={{ }} >
+                <Grid item xs={8} sm={1} sx={{ml:6}}>
+                    <IconButton type="submit">
                         <Add />
                     </IconButton>
                 </Grid>

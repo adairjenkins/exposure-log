@@ -56,24 +56,6 @@ function HierarchyList() {
                         </>
                 ))}
             </Stack>
-            {/* <TableContainer component={Paper}>
-                <Table sx={{}} >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="left">SITUATION</TableCell>
-                            <TableCell align="left">RATING</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {hierarchyList.map(situation => (
-                        <TableRow key={situation.id}>
-                            <TableCell align="left">{situation.description}</TableCell>
-                            <TableCell>{situation.rating}</TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
         </>
     )
 }
