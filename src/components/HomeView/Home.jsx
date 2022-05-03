@@ -157,9 +157,9 @@ function Home() {
                 label: moment(exposure.date.substr(0, 11) + exposure.time).format('lll'),
                 data: [exposure.pre_suds, exposure.peak_suds, exposure.post_suds],
                 //calculates gradation between two colors
-                borderColor: `rgba( ${ ((218-36) * (i / (graphExposures.length-1)) + 36) }, 
-                                    ${ ((62-126) * (i / (graphExposures.length-1)) + 126) },
-                                    ${ ((82-191) * (i / (graphExposures.length-1)) + 191) },   
+                borderColor: `rgba( ${((218 - 36) * (i / (graphExposures.length - 1)) + 36)}, 
+                                    ${((62 - 126) * (i / (graphExposures.length - 1)) + 126)},
+                                    ${((82 - 191) * (i / (graphExposures.length - 1)) + 191)},   
                                 1)`,
                 backgroundColor: 'rgba(255, 99, 132, 0)',
                 borderWidth: 4
@@ -185,40 +185,39 @@ function Home() {
 
     return (
         <Container sx={{ marginBottom: 10 }}>
-            <Stack spacing={3}>
-            <Stack spacing={6} justifyContent="center" direction="row" sx={{marginTop: 4, mb:4 }}>
-                <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
-                    <Typography variant="h5" align="center" sx={{mb:1}}>
-                        Daily Goal
-                    </Typography>
-                    <ProgressCircle
-                        percentage={dailyPercentage}
-                        count={count.daily}
-                        goal={goal.daily}
-                    />
-                </Box>
-                <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
-                    <Typography variant="h5" align="center" sx={{mb:1}}>
-                        Weekly Goal
-                    </Typography>
-                    <ProgressCircle
-                        percentage={weeklyPercentage}
-                        count={count.weekly}
-                        goal={goal.weekly}
-                    />
-                </Box>
-            </Stack>
-            {/* <Box sx={{ width: '90%', maxWidth: 500, marginLeft: 2, marginTop: 5 }}>
+            <Stack alignItems="center" spacing={3}>
+                <Stack spacing={6} justifyContent="center" direction="row" sx={{ marginTop: 4, mb: 4 }}>
+                    <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
+                        <Typography variant="h5" align="center" sx={{ mb: 1 }}>
+                            Daily Goal
+                        </Typography>
+                        <ProgressCircle
+                            percentage={dailyPercentage}
+                            count={count.daily}
+                            goal={goal.daily}
+                        />
+                    </Box>
+                    <Box sx={{ width: 2 / 5, maxWidth: 200 }}>
+                        <Typography variant="h5" align="center" sx={{ mb: 1 }}>
+                            Weekly Goal
+                        </Typography>
+                        <ProgressCircle
+                            percentage={weeklyPercentage}
+                            count={count.weekly}
+                            goal={goal.weekly}
+                        />
+                    </Box>
+                </Stack>
+                {/* <Box sx={{ width: '90%', maxWidth: 500, marginLeft: 2, marginTop: 5 }}>
                 <Typography variant="h6">
                     Hierarchy Progression
                 </Typography>
                 <div style={pyramidStyle}><JSCharting options={pyramidConfig} /></div>
             </Box> */}
- 
                 <Typography variant="h5" align="center">
                     Exposure Distress Levels
                 </Typography>
-                <FormControl sx={{ width:"100%", maxWidth:500 }}>
+                <FormControl sx={{ width: "100%", maxWidth: 500 }}>
                     <InputLabel>Situation</InputLabel>
                     <Select
                         value={graphId}
@@ -231,10 +230,10 @@ function Home() {
                         ))}
                     </Select>
                 </FormControl>
-                <Box sx={{maxWidth:500}}>
+                <Box sx={{ width:"100%", maxWidth:500 }}>
                     <Line options={options} data={data} />
                 </Box>
-                </Stack>
+            </Stack>
         </Container >
     )
 }
