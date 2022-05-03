@@ -5,43 +5,47 @@ import { Add } from '@mui/icons-material';
 
 function HierarchyForm() {
     // FIXME: target_id will come from url params
-    const emptyForm = { target_id: '',
-                        description: '',
-                        rating: ''
-                        }
+    const emptyForm = {
+        target_id: '',
+        description: '',
+        rating: ''
+    }
 
     const dispatch = useDispatch();
     const [formValues, setFormValues] = useState(emptyForm)
 
     useEffect(() => {
-    dispatch({type: 'GET_HIERARCHY'});
+        dispatch({ type: 'GET_HIERARCHY' });
     }, []);
 
     const submitHierarchyForm = (event) => {
         event.preventDefault();
         console.log('submitTargetForm formValues:', formValues);
-        dispatch({type: 'ADD_HIERARCHY', payload: formValues});
+        dispatch({ type: 'ADD_HIERARCHY', payload: formValues });
         setFormValues(emptyForm);
 
     }
-    
+
     return (
         <form onSubmit={submitHierarchyForm}>
-            <Grid container>
+            <Grid container spacing={2} >
+                <Grid item xs={12} md={6}>
                     <TextField
                         required
                         label="Add new situation to hierarchy"
                         variant="outlined"
                         value={formValues.description}
-                        sx={{minWidth: 375, marginTop:2, marginLeft:2, marginRight:2}}
-                        onChange={(event) => setFormValues({...formValues, description: event.target.value})}
+                        onChange={(event) => setFormValues({ ...formValues, description: event.target.value })}
+                        sx={{minWidth:350}}
                     />
-                    <FormControl required sx={{minWidth: 110, margin:2, marginTop:2, marginBottom:0}}>
+                </Grid>
+                <Grid item xs={6} md={4}>
+                    <FormControl required sx={{ minWidth: 110}}>
                         <InputLabel>Rating</InputLabel>
                         <Select
                             value={formValues.rating}
                             label="Rating"
-                            onChange={(event) => setFormValues({...formValues, rating: event.target.value})}
+                            onChange={(event) => setFormValues({ ...formValues, rating: event.target.value })}
                         >
                             <MenuItem key={1} value={1}>{1}</MenuItem>
                             <MenuItem key={2} value={2}>{2}</MenuItem>
@@ -55,9 +59,12 @@ function HierarchyForm() {
                             <MenuItem key={10} value={10}>{10}</MenuItem>
                         </Select>
                     </FormControl>
-                <IconButton type="submit" sx={{ml:1}} >
-                    <Add/>
-                </IconButton>
+                </Grid>
+                <Grid item xs={6} md={2}>
+                    <IconButton type="submit" sx={{ }} >
+                        <Add />
+                    </IconButton>
+                </Grid>
             </Grid>
         </form>
     )
