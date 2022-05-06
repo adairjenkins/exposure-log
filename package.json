@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^3.2.1",
+    "jest": "^28.1.0",
     "jscharting-react": "^1.4.0",
     "nodemon": "^2.0.4"
   },

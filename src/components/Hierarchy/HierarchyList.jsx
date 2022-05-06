@@ -19,12 +19,12 @@ function HierarchyList() {
     }, []);
 
     return (
-        <>
-            <Stack spacing={1.5} sx={{ width: "90%", maxWidth:700, marginBottom: "70px", marginTop: "20px" }}>
+        <Stack alignItems="center">
+            <Stack alignItems="center" spacing={1.5} sx={{maxWidth:700, marginBottom: "70px", marginTop: "20px" }}>
                 {hierarchyList.map(situation => (
                     exposureList.some(exposure => exposure.hierarchy_id == situation.id) ?
                         <>
-                            <Paper variant="outlined" key={situation.id} sx={{ backgroundColor:"#E6EDF5",
+                            <Paper variant="outlined" key={situation.id} sx={{ width:"90%", backgroundColor:"#E6EDF5",
                                 '&:hover': {
                                     backgroundColor: "#ededed",
                                 }, padding: 1
@@ -33,14 +33,11 @@ function HierarchyList() {
                                 < Situation
                                     situation={situation}
                                 />
-                                {/* < EditSituation
-                            situation={situation} 
-                        /> */}
                             </Paper>
                         </>
                         :
                         <>
-                            <Paper variant="outlined" key={situation.id} sx={{
+                            <Paper variant="outlined" key={situation.id} sx={{ width:"90%",
                                 '&:hover': {
                                     backgroundColor: "#ededed",
                                 }, padding: 1
@@ -49,14 +46,11 @@ function HierarchyList() {
                                 < Situation
                                     situation={situation}
                                 />
-                                {/* < EditSituation
-                            situation={situation} 
-                        /> */}
                             </Paper>
                         </>
                 ))}
             </Stack>
-        </>
+        </Stack>
     )
 }
 

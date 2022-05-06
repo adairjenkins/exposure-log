@@ -11,11 +11,10 @@ function Hierarchy() {
 
     return (
         <>
-            <Stack alignItems="center">
                 <HierarchyForm />
 
                 <HierarchyList />
-            </Stack>
+
         </>
     )
 }

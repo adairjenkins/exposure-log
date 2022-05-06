@@ -28,7 +28,7 @@ function HierarchyForm() {
 
     return (
         <form onSubmit={submitHierarchyForm}>
-            <Grid container spacing={2} justifyContent="flex-start" sx={{mt:1, mb:1, ml:1}}>
+            <Grid container spacing={2} justifyContent="flex-start" sx={{mt:1, mb:1, ml:1, maxWidth:600}}>
                 <Grid item xs={12} sm={8} >
                     <TextField
                         required
