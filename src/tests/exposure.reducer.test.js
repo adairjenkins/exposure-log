@@ -1,4 +1,4 @@
-import exposureReducer from '/src/redux/reducers/exposure.reducer';
+import exposureReducer from '../redux/reducers/exposure.reducer';
 
 describe('Testing exposureReducer', () => {
     test('should have correct initial state', () => {
