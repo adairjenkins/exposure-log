@@ -45,10 +45,6 @@ Using editor of choice, from the terminal run npm install, followed by npm run s
 This app relies on user generated data. To see a demo based on exposures for a fear of dogs, add sample data to database using queries from database.sql file. A demo account is also available in the deployed version using Demo Account login.  
 
 
-## License
-
-<a href="https://choosealicense.com/licenses/agpl-3.0/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/agpl3.svg" height=40 />GNU Affero General Public License v3.0</a>
-
 ## Acknowledgements
 
 Thank you to Prime Academy for the opportunity ....
