@@ -36,26 +36,25 @@ https://exposure-log.herokuapp.com/
 
 ## Getting Started
 
-Getting started ....
+Create a database named "exposure-log". Necessary queries for building the database and sample data are in the database.sql file.
 
 ### Prerequisites
 
-Prerequisites go here
+Exposure log requires the following to run:
+• Node.js 0.10+
+• npm (normally comes with Node.js)
 
 ### Installation
-
-Create a database named "exposure-log". Necessary queries for building the database and sample data are in the database.sql file.
 
 Using editor of choice, from the terminal run npm install, followed by npm run server and npm run client. Project will load at url localhost:3000.
 
 ## Usage
 
-This app relies on user generated data. To see a demo based on exposures for a fear of dogs, add sample data to database using queries from database.sql file. A demo account is also available in the deployed version using Demo Account login.  
-
+This app relies on user generated data. To see a demo based on exposures for a fear of dogs, add sample data to database using queries from database.sql file. A demo account is also available in the deployed version using Demo Account login.   
 
 ## Acknowledgements
 
-Thank you to Prime Academy for the opportunity ....
+Thank you to Prime Academy for the opportunity and support building this project.
 
 ## Contacts
 
